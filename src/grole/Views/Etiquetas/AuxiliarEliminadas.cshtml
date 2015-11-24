@@ -84,7 +84,7 @@
 
         limpiarTabla("cuerpoTablaAuxiliarEliminadas",null);
 
-        var pUrl = "/etiquetas/obtenertablaauxiliareliminadas";
+        var pUrl  = "/etiquetas/obtenertablaauxiliareliminadas";
         var pData = $("#formaAuxiliarEliminadas").serialize();
 
         var $cargando = $('div#cargando').html('<p><img src="/public/images/Cargando.gif" /></p>');
@@ -93,22 +93,22 @@
             for (var i = 0; i < Result.length; i++) {
                 var pAuxiliarEliminadas = Result[i];
 
-                var pFila              = document.createElement("tr");
-                var pCeldaFecha        = document.createElement("td");
-                var pCeldaClave = document.createElement("td");
-                var pCeldaDescripcion    = document.createElement("td");
-                var pCeldaCajasRe      = document.createElement("td");
-                var pCeldaKiloRe = document.createElement("td");
-                var pCeldaCajasEl = document.createElement("td");
-                var pCeldaKilosEl = document.createElement("td");
+                var pFila             = document.createElement("tr");
+                var pCeldaFecha       = document.createElement("td");
+                var pCeldaClave       = document.createElement("td");
+                var pCeldaDescripcion = document.createElement("td");
+                var pCeldaCajasRe     = document.createElement("td");
+                var pCeldaKiloRe      = document.createElement("td");
+                var pCeldaCajasEl     = document.createElement("td");
+                var pCeldaKilosEl     = document.createElement("td");
 
                 pCeldaFecha.textContent        = $.datepicker.formatDate('dd/mm/yy', new Date(pAuxiliarEliminadas.Fecha));
-                pCeldaClave.textContent = pAuxiliarEliminadas.Producto;
-                pCeldaDescripcion.textContent = pAuxiliarEliminadas.Descripcion;
-                pCeldaCajasRe.textContent = pAuxiliarEliminadas.Reetiquetadas_Cajas;
-                pCeldaKilosRe.textContent = pAuxiliarEliminadas.Reetiquetadas_Kilos;
-                pCeldaCajasEl.textContent = pAuxiliarEliminadas.Eliminadas_Cajas;
-                pCeldaKilosEl.textContent = pAuxiliarEliminadas.Eliminadas_Kilos;
+                pCeldaClave.textContent        = pAuxiliarEliminadas.Producto;
+                pCeldaDescripcion.textContent  = pAuxiliarEliminadas.Descripcion;
+                pCeldaCajasRe.textContent      = pAuxiliarEliminadas.Reetiquetadas_Cajas;
+                pCeldaKilosRe.textContent      = pAuxiliarEliminadas.Reetiquetadas_Kilos;
+                pCeldaCajasEl.textContent      = pAuxiliarEliminadas.Eliminadas_Cajas;
+                pCeldaKilosEl.textContent      = pAuxiliarEliminadas.Eliminadas_Kilos;
 
                 pFila.appendChild(pCeldaFecha);
                 pFila.appendChild(pCeldaClave);

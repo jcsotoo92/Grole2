@@ -38,9 +38,9 @@
 			$("#Areas").focus();
 			$("#div_excel").hide();
 			$("#btnVerificar").hide();
-			var d = new Date();
-			var month = d.getMonth() + 1;
-			var day = d.getDate();
+			var d      = new Date();
+			var month  = d.getMonth() + 1;
+			var day    = d.getDate();
 			var output = (('' + day).length < 2 ? '0' : '') + day + '/' +
                 (('' + month).length < 2 ? '0' : '') + month + '/' +
                 d.getFullYear();
@@ -60,7 +60,7 @@
 				$("#Fecha").focus();
 				return;
 		}
-		pUrl = "/Cortes/ProduccionVerificada";
+		pUrl  = "/Cortes/ProduccionVerificada";
 		pData = "AFecha=" + pFecha + "&AArea=" + pArea;
 		$.post(pUrl, pData, function (Result) {
 		    if (Result)
@@ -75,7 +75,7 @@
 	function resumen_corte_areas()
 	{
 	    var pFecha = document.getElementById("Fecha").value.toString();
-		var pArea = document.getElementById("Areas").value.toString();
+		var pArea  = document.getElementById("Areas").value.toString();
 
 		if (pFecha.length == 0)
 		{
@@ -85,7 +85,7 @@
 		}
 			
 
-		pUrl = "/Cortes/ObtenerResumenCortesArea";
+		pUrl  = "/Cortes/ObtenerResumenCortesArea";
 		pData = "AFecha=" + pFecha + "&AArea=" + pArea;
 		$.get(pUrl, pData, function (Result) {
 		    var pTabla = document.getElementById("ResultHead");
@@ -116,9 +116,9 @@
 		if (confirm("¿Dar producción como buena?"))
 		{
 			var pFecha = document.getElementById("Fecha").value.toString();
-			var pArea = document.getElementById("Areas").value.toString();
+			var pArea  = document.getElementById("Areas").value.toString();
 
-			pUrl = "/Cortes/CambiarResumenVerificado";
+			pUrl  = "/Cortes/CambiarResumenVerificado";
 			pData = "AFecha=" + pFecha + "&AArea=" + pArea;
 			$.post(pUrl, pData, function (Result) {
 

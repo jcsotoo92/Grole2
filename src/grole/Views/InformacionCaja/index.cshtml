@@ -70,20 +70,20 @@
                 var pFolio     = document.getElementById("Folio").value;
                 var pFecha     = document.getElementById("Fecha").value;
 
-                pUrl = "/InformacionCaja/ObtenerDatosCaja?folio=" + pFolio.toString() + "&fecha=" + pFecha.toString();
+                pUrl  = "/InformacionCaja/ObtenerDatosCaja?folio=" + pFolio.toString() + "&fecha=" + pFecha.toString();
                 pData = "folio=" + pFolio.toString() + "&fecha=" + pFecha.toString();
 
                 $.get(pUrl, pData, function (data) {
                     alert("."+data.Producto+".");
                     if (data.producto != "null") {
-                        document.getElementById("producto").innerText = data.Producto;
-                        document.getElementById("codigo").innerText = data.CodigoBarras;
+                        document.getElementById("producto").innerText         = data.Producto;
+                        document.getElementById("codigo").innerText           = data.CodigoBarras;
                         document.getElementById("fecha_sacrificio").innerText = data.Fecha_Sacrificio;
-                        document.getElementById("fecha").innerText = data.Fecha;
-                        document.getElementById("peso").innerText = data.Peso;
-                        document.getElementById("tarima").innerText = data.Tarima;
-                        document.getElementById("bascula").innerText = data.Bascula;
-                        document.getElementById("folio_salida").innerText = data.Id_Salida;
+                        document.getElementById("fecha").innerText            = data.Fecha;
+                        document.getElementById("peso").innerText             = data.Peso;
+                        document.getElementById("tarima").innerText           = data.Tarima;
+                        document.getElementById("bascula").innerText          = data.Bascula;
+                        document.getElementById("folio_salida").innerText     = data.Id_Salida;
                         $("#info").show();
                     } else {
                         $("#Folio").focus();

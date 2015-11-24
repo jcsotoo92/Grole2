@@ -85,7 +85,7 @@
 
     function eliminarLote(clave) {//Hace el post para eliminar un lote de la base de datos
         if (window.confirm("¿Eliminar lote no inventariable?")) {
-            var pUrl = "/lotes/eliminar";
+            var pUrl  = "/lotes/eliminar";
             var pData = "Clave=" + clave;
             $.post(pUrl, pData, function (Result) {
                 if (Result.Result == true) {

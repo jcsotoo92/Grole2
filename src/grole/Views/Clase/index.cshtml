@@ -152,15 +152,15 @@
 		var pCeldaActivo         = document.createElement("td");
 		pCeldaActivo.textContent = AClase.Activo;
 		//Eliminar Clase
-		var pCeldaEliminar   = document.createElement("td");
-		var pAnchorEliminar  = document.createElement("a");
-		pAnchorEliminar.href = "javascript:eliminarClase('" + AClase.Clave +"');";
+		var pCeldaEliminar          = document.createElement("td");
+		var pAnchorEliminar         = document.createElement("a");
+		pAnchorEliminar.href        = "javascript:eliminarClase('" + AClase.Clave +"');";
 		pAnchorEliminar.textContent = "Eliminar";
 		pCeldaEliminar.appendChild(pAnchorEliminar);
 		//Modificar Clase
-		var pCeldaModificar  = document.createElement("td");
-		var pAnchorModificar = document.createElement("a");
-		pAnchorModificar.href = "javascript:modificarClase('"+AClase.Clave+"','"+AClase.Descripcion+"','"+AClase.Manejaextra+"','"+AClase.Tipo+"','"+AClase.Activo+"');";
+		var pCeldaModificar          = document.createElement("td");
+		var pAnchorModificar         = document.createElement("a");
+		pAnchorModificar.href        = "javascript:modificarClase('"+AClase.Clave+"','"+AClase.Descripcion+"','"+AClase.Manejaextra+"','"+AClase.Tipo+"','"+AClase.Activo+"');";
 		pAnchorModificar.textContent = "Editar";
 		pCeldaModificar.appendChild(pAnchorModificar);
 	
@@ -195,7 +195,7 @@
 	        claseId = cells[0].innerHTML;
 	        if (claseId >= pClave) {
 	            var vId = parseInt(claseId);
-	            pClave = vId + 1;
+	            pClave  = vId + 1;
 	        }
 	        
                 
@@ -267,7 +267,7 @@
 		
 		
 		var pData = "Clave=" + pClave + "&Descripcion=" + pDescripcion + "&Manejaextra=" + pManejaextra + "&Tipo=" + pTipo + "&Activo=" + pActivo;
-		var pUrl = "/Clase/modificar";
+		var pUrl  = "/Clase/modificar";
 		
 		$.post(pUrl, pData, function(Result)
 			{

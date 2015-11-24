@@ -41,9 +41,9 @@
                     document.getElementById("inpClaveProd").value = Result[0].Clave;
                     for (var i = 0; i < Result.length; i++) {
 
-                        var optionProd = document.createElement("option");
-                        optionProd.id = Result[i].Clave;
-                        optionProd.value = Result[i].Clave;
+                        var optionProd         = document.createElement("option");
+                        optionProd.id          = Result[i].Clave;
+                        optionProd.value       = Result[i].Clave;
                         optionProd.textContent = "(" + Result[i].Clave + ") " + Result[i].Descripcion;
                         if (i == 0)
                             document.getElementById("listaProductos").value = Result[i];
@@ -85,7 +85,7 @@
 
         limpiarTabla("cuerpoTablaNoInventariables", "footerTablaNoInventariables");
 
-        var pUrl = "/etiquetas/obtenertablanoinventariadas";
+        var pUrl  = "/etiquetas/obtenertablanoinventariadas";
         var pData = $("#formaNoInventariables").serialize();
 
         var $cargando = $('div#cargando').html('<p><img src="/public/images/Cargando.gif" /></p>');

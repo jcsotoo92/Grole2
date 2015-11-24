@@ -45,12 +45,12 @@
 		}
 		//Elimina Productos de Maquila
 		pData = "Id=" + Id_costo;
-		pUrl = "/CostosMaquila/eliminarProductosMaquila";
+		pUrl  = "/CostosMaquila/eliminarProductosMaquila";
 		$.post(pUrl, pData, function(Result){});
 		
 		//Elimina Maquila
 		pData = "Id=" + Id_costo;
-		pUrl = "/CostosMaquila/eliminarMaquila";
+		pUrl  = "/CostosMaquila/eliminarMaquila";
 		$.post(pUrl, pData, function(Result){});
 		document.getElementById("tr" + Id_costo.toString()).remove();
 		alert("Costos Maquila Eliminada Exitosamente!");
@@ -59,8 +59,8 @@
 	
 	function modificar(Id)
 	{
-		pData = "Id=" + Id;
-		pUrl = "/CostosMaquila/Modificar?Id="+Id;
+		pData           = "Id=" + Id;
+		pUrl            = "/CostosMaquila/Modificar?Id="+Id;
 		window.location = pUrl;
 	}
 	

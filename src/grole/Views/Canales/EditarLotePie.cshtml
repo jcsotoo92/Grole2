@@ -125,7 +125,7 @@
 
 	$(document).ready(function () {
             document.getElementById("Fecha").disabled = true;
-            document.getElementById("Lote").disabled = true;
+            document.getElementById("Lote").disabled  = true;
 			$("#HoraRecepcion").timepicker();
 			$("#HoraLlegada").timepicker();
 			$("#InicioDescarga").timepicker();
@@ -168,14 +168,14 @@
 		}
 
     	document.getElementById("Fecha").disabled = false;
-    	document.getElementById("Lote").disabled = false;
+    	document.getElementById("Lote").disabled  = false;
 		document.forms["Forma"].submit();
     }
 
     function cancelar()
     {
-    	var pFecha  = document.getElementById('Fecha').value.toString();
-    	var pGranja = document.getElementById('Granja').value.toString();
+    	var pFecha      = document.getElementById('Fecha').value.toString();
+    	var pGranja     = document.getElementById('Granja').value.toString();
     	window.location = "/canales/LotesPie?Fecha=" + pFecha + "&Granja=" + pGranja;
     }
 

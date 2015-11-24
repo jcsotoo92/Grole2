@@ -58,7 +58,7 @@
 
         var $cargando = $('div#cargando').html('<p><img src="/public/images/Cargando.gif" /></p>');
 
-        var pUrl = "/producto/obtenertablausoempaque";
+        var pUrl  = "/producto/obtenertablausoempaque";
         var pData = $("#formaUsoEmpaque").serialize();
 
         $.get(pUrl, pData, function (Result) {
@@ -70,7 +70,7 @@
                 var pCeldaCantidad  = document.createElement("td");
                 var pEnlaceCantidad = document.createElement("a");
 
-                pCeldaEmpaque.textContent = item.Nombre;
+                pCeldaEmpaque.textContent   = item.Nombre;
                 pEnlaceCantidad.textContent = Number(item.Cantidad_Producto).toFixed(2);
 
                 pEnlaceCantidad.href = "/producto/detalleusoempaque?Empaque=" + item.Rempaque + "&Fechaini=" + pFechaIni.value + "&Fechafin=" + pFechaFin.value;

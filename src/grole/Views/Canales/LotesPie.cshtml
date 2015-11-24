@@ -66,9 +66,9 @@
                     if (Result[i].Bajas == -1) var Bajas = ""; else Bajas = Result[i].Bajas;
                     if (Result[i].PesoBajas == -1) var PesoBajas = ""; else PesoBajas = Result[i].PesoBajas;
                     var fechasplit = Result[i].Fecha.split("/");
-                    var dia = fechasplit[0];
-                    var mes = fechasplit[1];
-                    var año = fechasplit[2];
+                    var dia        = fechasplit[0];
+                    var mes        = fechasplit[1];
+                    var año        = fechasplit[2];
                     $("#TablaLotesPieBody").append("<tr><td>" + Result[i].Fecha + "</td><td>" + Result[i].Lote + "</td><td>" + Result[i].Cantidad + "</td><td>" + Result[i].Peso + "</td><td>" + Result[i].Estatus + "</td><td>" + Bajas + "</td><td>" + PesoBajas + "</td><td>" + Result[i].Indice + "</td><td><a href='javascript:EditarLotePie(" + dia + "," + mes + "," + año + "," + pGranja + "," + Result[i].Lote + ");'>Editar</a></td><td><a href='javascript:EliminarLotePie(" + pGranja + "," + Result[i].Lote + ");'>Eliminar</a></td><td><a href='javascript:Bajas(" + pGranja + "," + Result[i].Lote + ");'>Bajas</a></td><td><a href='javascript:QuitarBajas(" + pGranja + "," + Result[i].Lote + ");'>Quitar Bajas</a></td></tr>");
                 }
             });
@@ -88,9 +88,9 @@
         function EliminarLotePie(pGranja, pLote)
         {
             if (confirm("¿Eliminar Lote Pie?")) {
-                pUrl = "/Canales/EliminarLotePie";
+                pUrl       = "/Canales/EliminarLotePie";
                 var pFecha = document.getElementById("Fecha").value.toString();
-                pData = "AFecha=" + pFecha + "&AGranja=" + pGranja + "&ALote=" + pLote;
+                pData      = "AFecha=" + pFecha + "&AGranja=" + pGranja + "&ALote=" + pLote;
                 $.getJSON(pUrl, pData, function (Result) {
                     if (Result) {
                         alert("Lote Eliminado");
@@ -102,24 +102,24 @@
         }
         function EditarLotePie(dia, mes, año, pGranja, pLote)
         {
-            pData = "Dia=" + dia + "&Mes=" + mes + "&Año="+año+"&AGranja=" + pGranja + "&ALote=" + pLote;
-            pUrl = "/Canales/EditarLotePie?" + pData;
+            pData           = "Dia=" + dia + "&Mes=" + mes + "&Año="+año+"&AGranja=" + pGranja + "&ALote=" + pLote;
+            pUrl            = "/Canales/EditarLotePie?" + pData;
             window.location = pUrl;
         }
         function Bajas(pGranja, pLote)
         {
 
-            var pFecha = document.getElementById("Fecha").value.toString();
-            pData = "AFecha=" + pFecha + "&AGranja=" + pGranja + "&ALote=" + pLote;
-            pUrl = "/Canales/AgregarBajasLotePie?"+pData;
+            var pFecha      = document.getElementById("Fecha").value.toString();
+            pData           = "AFecha=" + pFecha + "&AGranja=" + pGranja + "&ALote=" + pLote;
+            pUrl            = "/Canales/AgregarBajasLotePie?"+pData;
             window.location = pUrl;
         }
 
         function QuitarBajas(pGranja, pLote) {
 
             var pFecha = document.getElementById("Fecha").value.toString();
-            pData = "Fecha=" + pFecha + "&Granja=" + pGranja + "&Lote=" + pLote;
-            pUrl = "/Canales/QuitarBajasLotePie?" + pData;
+            pData      = "Fecha=" + pFecha + "&Granja=" + pGranja + "&Lote=" + pLote;
+            pUrl       = "/Canales/QuitarBajasLotePie?" + pData;
             window.location = pUrl;
         }
 

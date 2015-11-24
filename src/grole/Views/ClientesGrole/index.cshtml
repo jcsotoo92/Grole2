@@ -92,7 +92,7 @@
                 width: 410,
                 modal: true,
                 open: function (event, ui) {
-                document.getElementById("mopId").value = "" + AId;					
+                document.getElementById("mopId").value     = "" + AId;					
 				document.getElementById("mopNombre").value = "" + ANombre;
 				}
             });
@@ -107,21 +107,21 @@
 	{
 		//File a insertar
 		var pFila = document.createElement("tr");
-		pFila.id = "tr" + ACliente.Id;
+		pFila.id  = "tr" + ACliente.Id;
 		
 		//Nombre
-		var pCeldaNombre = document.createElement("td");
+		var pCeldaNombre         = document.createElement("td");
 		pCeldaNombre.textContent = ACliente.Nombre;
 		//Eliminar Cliente
-		var pCeldaEliminar = document.createElement("td");
-		var pAnchorEliminar = document.createElement("a");
-		pAnchorEliminar.href = "javascript:eliminarCliente('" + ACliente.Id +"');";
+		var pCeldaEliminar          = document.createElement("td");
+		var pAnchorEliminar         = document.createElement("a");
+		pAnchorEliminar.href        = "javascript:eliminarCliente('" + ACliente.Id +"');";
 		pAnchorEliminar.textContent = "Eliminar";
 		pCeldaEliminar.appendChild(pAnchorEliminar);
 		//Modificar Cliente
-		var pCeldaModificar = document.createElement("td");
-		var pAnchorModificar = document.createElement("a");
-		pAnchorModificar.href = "javascript:modificarCliente('"+ACliente.Id+"','"+ACliente.Nombre+"');";
+		var pCeldaModificar          = document.createElement("td");
+		var pAnchorModificar         = document.createElement("a");
+		pAnchorModificar.href        = "javascript:modificarCliente('"+ACliente.Id+"','"+ACliente.Nombre+"');";
 		pAnchorModificar.textContent = "Editar";
 		pCeldaModificar.appendChild(pAnchorModificar);
 	
@@ -148,7 +148,7 @@
 		}
 
 		var pData = "Nombre=" + pNombre;
-		var pUrl = "/ClientesGrole/insertar";
+		var pUrl  = "/ClientesGrole/insertar";
 		$.post(pUrl, pData, function(Result)
 			{
 				$(".ui-dialog-titlebar-close").trigger('click');
@@ -158,11 +158,11 @@
 	
 	function actualiza_cliente_grole()
 	{
-		var pId = document.getElementById("mopId").value;
+		var pId     = document.getElementById("mopId").value;
 		var pNombre = document.getElementById("mopNombre").value;
 		
 		var pData = "Id=" + pId + "&Nombre=" + pNombre;
-		var pUrl = "/ClientesGrole/modificar";
+		var pUrl  = "/ClientesGrole/modificar";
 		
 		$.post(pUrl, pData, function(Result)
 			{
@@ -179,7 +179,7 @@
 			return;
 		}
 		
-		var pUrl = "/ClientesGrole/eliminar";
+		var pUrl  = "/ClientesGrole/eliminar";
 		var pData = "Id=" + AId.toString();
 		
 		$.post(pUrl, pData, function(Result)
@@ -200,7 +200,7 @@
 		var pBusqueda = document.getElementById("Buscar").value;
 		
 		var pData = "Filtrado=" + pBusqueda;
-		var pUrl = "/ClientesGrole/Buscar";
+		var pUrl  = "/ClientesGrole/Buscar";
 		$.post(pUrl, pData, function(Result)
 			{
 				$(".ui-dialog-titlebar-close").trigger('click');

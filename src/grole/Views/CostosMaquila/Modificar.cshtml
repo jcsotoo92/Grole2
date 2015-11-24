@@ -49,39 +49,39 @@
 					$("#inpFecha").datepicker({ changeMonth: true, changeYear: true });
 					$("#inpFechaFinal").datepicker({ changeMonth: true, changeYear: true });
 				});
-	var fecha = '@Model.Fecha';
-	var FechaSp = fecha.split(" ");
-	document.getElementById("inpFecha").value=FechaSp[0];
-	var fecha = '@Model.FechaFinal';
-	var FechaFinalSp = fecha.split(" ");
-	document.getElementById("inpFechaFinal").value=FechaFinalSp[0];
-	var id = '@Model.Id';
-	var activo = '@Model.Activo';
-	var element = document.getElementById('inpActivo');
-	element.value = activo;
+	var fecha                                      = '@Model.Fecha';
+	var FechaSp                                    = fecha.split(" ");
+	document.getElementById("inpFecha").value      = FechaSp[0];
+	var fecha                                      = '@Model.FechaFinal';
+	var FechaFinalSp                               = fecha.split(" ");
+	document.getElementById("inpFechaFinal").value = FechaFinalSp[0];
+	var id                                         = '@Model.Id';
+	var activo                                     = '@Model.Activo';
+	var element                                    = document.getElementById('inpActivo');
+	element.value                                  = activo;
 	obtenerProductos(id);		
 	
 	function cancelar()
 	{
-		pUrl = "/CostosMaquila";
+		pUrl            = "/CostosMaquila";
 		window.location = pUrl;
 	}
 	
 	function onBlur_producto(){
 		var pData = "Id=" + document.getElementById("inpProductoClave").value;
-		var pUrl = "/Producto/ObtenerProducto";	
+		var pUrl  = "/Producto/ObtenerProducto";	
 			$.post(pUrl, pData, function(Result)
 			{	
 				if(Result == null)
 				{
 					document.getElementById("inpDescripcion").value = "???";
-					document.getElementById("inpCosto").value = "0.00";
+					document.getElementById("inpCosto").value       = "0.00";
 				
 				}
 				else
 				{
 					document.getElementById("inpDescripcion").value = Result.Descripcion;
-					document.getElementById("inpCosto").value = "0.00";
+					document.getElementById("inpCosto").value       = "0.00";
 					document.getElementById("inpCosto").focus();
 				}
 			});
@@ -95,14 +95,14 @@
 			{	
 				if(Result == null)
 				{
-					document.getElementById("Clave"+numFila).value = "";
-					document.getElementById("Costo"+numFila).value = "0.00";
-					document.getElementById("Descripcion"+numFila).value="???";
+					document.getElementById("Clave"+numFila).value       = "";
+					document.getElementById("Costo"+numFila).value       = "0.00";
+					document.getElementById("Descripcion"+numFila).value = "???";
 				}
 				else
 				{
 					document.getElementById("Descripcion"+numFila).value = Result.Descripcion;
-					document.getElementById("Costo"+numFila).value = "0.00";
+					document.getElementById("Costo"+numFila).value       = "0.00";
 					document.getElementById("Costo"+numFila).focus();
 				}
 			});
@@ -116,8 +116,8 @@
 			var Producto_Costo 		   = [];
 			var Producto_Identificador = [];
 		//Producto *Agregar
-			var AProducto_Id			 = [];
-			var AProducto_Costo		 = [];
+			var AProducto_Id		   = [];
+			var AProducto_Costo		   = [];
 		
 		//Recorriendo tabla y agregando productos para *modificar
 			var r     = 0;
@@ -182,7 +182,7 @@
 			while(idx=AProducto_Id[x])
 			{
 				pData = "Id_Costo=" + id + "&Producto=" + AProducto_Id[x] + "&Costo=" + AProducto_Costo[x];
-				pUrl = "/CostosMaquila/insertarproductos";
+				pUrl  = "/CostosMaquila/insertarproductos";
 				$.post(pUrl, pData, function(Result3){});
 				x++;
 			}

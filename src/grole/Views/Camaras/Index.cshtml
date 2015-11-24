@@ -271,8 +271,8 @@
 					window.alert("Los kilos capturadas son mayor al saldo en el periodo, el saldo para ese periodo es de "+Result.Kilos);
 				}else{
 					
-					var pUrlP="/camaras/insertarvalidacioncamara";
-					var pDataP="Camara="+document.getElementById("camara").class+"&Producto="+inpClaveProd.value+"&Cantidad="+inpCajas.value+
+					var pUrlP  = "/camaras/insertarvalidacioncamara";
+					var pDataP = "Camara="+document.getElementById("camara").class+"&Producto="+inpClaveProd.value+"&Cantidad="+inpCajas.value+
 					"&Kilos="+inpKilos.value+"&FechaMin="+inpFechaProd.value+"&FechaMax="+inpFechaProd.value;
 					
 					$.post(pUrlP,pDataP,function (Result){

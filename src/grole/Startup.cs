@@ -2,7 +2,7 @@
 using System;
 using Microsoft.Dnx.Runtime;
 using Microsoft.Framework.Configuration;
-using Microsoft.Framework.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace grole.src
 {
@@ -12,11 +12,9 @@ namespace grole.src
 		
 		public IConfiguration Configuration { get; set; }
 
-        public Startup(IApplicationEnvironment appEnv)
+        public Startup()
         {
-            var builder = new ConfigurationBuilder()
-              .SetBasePath(appEnv.ApplicationBasePath)
-              .AddJsonFile("Config.json");
+            var builder = new ConfigurationBuilder().AddJsonFile("Config.json");
             Configuration = builder.Build();
         }
 		
@@ -150,7 +148,7 @@ namespace grole.src
             app.UseCookieAuthentication(options => 
 			{
                 options.ExpireTimeSpan = TimeSpan.FromDays(1);
-				options.AutomaticAuthentication = true;
+				options.AutomaticAuthenticate = true;
 				options.LoginPath = "/Account/Login";
 			});
 			app.UseStaticFiles();

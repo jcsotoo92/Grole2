@@ -49,18 +49,16 @@
 
         limpiarTabla("cuerpoCorteFecha", "footerTablaCorteFecha");
 
-        var $cargando = $('div#cargando').html('<p><img src="/public/images/Cargando.gif" /></p>');
-
+        var $cargando   = $('div#cargando').html('<p><img src="/public/images/Cargando.gif" /></p>');
         var pTotalKilos = 0, pTotalCajas = 0, pTotalAplicadas = 0;
-
-        var pUrl = "/cortes/obtenertablacortefecha";
-        var pData = $("#formaCorteFecha").serialize();
+        var pUrl        = "/cortes/obtenertablacortefecha";
+        var pData       = $("#formaCorteFecha").serialize();
 
         $.get(pUrl, pData, function (Result) {
             $.get("/cortes/obtenerpendientescorte", pData, function (Pendientes) {
-                var pEnlacePendientes = document.getElementById("enlacePendientes");
+                var pEnlacePendientes         = document.getElementById("enlacePendientes");
                 pEnlacePendientes.textContent = Pendientes;
-                pEnlacePendientes.href = "/cortes/pendientesfecha?" + pData;
+                pEnlacePendientes.href        = "/cortes/pendientesfecha?" + pData;
             });
             
             var pInfo = document.getElementById("tablaCorteFecha_info");

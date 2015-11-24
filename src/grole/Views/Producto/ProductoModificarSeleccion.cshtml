@@ -505,17 +505,17 @@
         cargar_datos_de_producto_categoria();
         cargar_valores();
         //Fecha
-        var d = new Date();
-        var dia = d.getDate();
-        var mes = d.getMonth();
-        var año = d.getFullYear();
+        var d     = new Date();
+        var dia   = d.getDate();
+        var mes   = d.getMonth();
+        var año   = d.getFullYear();
         var fecha = mes + "/" + dia + "/" + año;
         
         function cargar_datos_de_producto_clase() {
             var pUrl = "/Clase/ListaClases";
             $.post(pUrl, function (Result) {
                 for (var i = 0; i < Result.length; i++) {
-                    var o = new Option(Result[i].Descripcion, Result[i].Clave);
+                    var o       = new Option(Result[i].Descripcion, Result[i].Clave);
                     o.innerHTML = Result[i].Descripcion; document.getElementById("clase").appendChild(o);
                 }
                 document.getElementById("clase").value = '@Model.Clase';
@@ -525,7 +525,7 @@
             var pUrl = "/Lineas/ObtenerLista";
             $.getJSON(pUrl, function (Result) {
                 for (var i = 0; i < Result.length; i++) {
-                    var o = new Option(Result[i].Descripcion, Result[i].Clave);
+                    var o       = new Option(Result[i].Descripcion, Result[i].Clave);
                     o.innerHTML = Result[i].Descripcion; document.getElementById("linea").appendChild(o);
                 }
                 document.getElementById("linea").value = '@Model.Linea';
@@ -536,7 +536,7 @@
             var pUrl = "/Categorias/ListaCategorias";
             $.getJSON(pUrl, function (Result) {
                 for (var i = 0; i < Result.length; i++) {
-                    var o = new Option(Result[i].Cat, Result[i].Id);
+                    var o       = new Option(Result[i].Cat, Result[i].Id);
                     o.innerHTML = Result[i].Cat; document.getElementById("categoria").appendChild(o);
                 }
                 document.getElementById("categoria").value = '@Model.Categoria';
@@ -546,46 +546,46 @@
         function cargar_valores()
         {
             //Datos de Producto
-            document.getElementById("mercado").value = '@Model.Mercado';
-            document.getElementById("grupo").value = '@Model.Grupo';
-            document.getElementById("operador").value = '@Model.Operador';
-            document.getElementById("rendimiento").value = '@Model.Rendimiento';
-            document.getElementById("moldeado").value = '@Model.Moldeado';
+            document.getElementById("mercado").value       = '@Model.Mercado';
+            document.getElementById("grupo").value         = '@Model.Grupo';
+            document.getElementById("operador").value      = '@Model.Operador';
+            document.getElementById("rendimiento").value   = '@Model.Rendimiento';
+            document.getElementById("moldeado").value      = '@Model.Moldeado';
             document.getElementById("inventariable").value = '@Model.Inventariable';
             //document.getElementById("origen").value = '';
             document.getElementById("captura_pedimento").value = '@Model.Captura_Pedimento';
 
             //Peso y Redondeo
-            document.getElementById("peso_fijo").value = '@Model.Pesofijo';
-            document.getElementById("peso_minimo").value = '@Model.Pesominimo';
-            document.getElementById("peso_maximo").value = '@Model.Pesomaximo';
-            document.getElementById("peso_tara").value = '@Model.Pesotara';
-            document.getElementById("decimales").value = '@Model.Decimales';
+            document.getElementById("peso_fijo").value        = '@Model.Pesofijo';
+            document.getElementById("peso_minimo").value      = '@Model.Pesominimo';
+            document.getElementById("peso_maximo").value      = '@Model.Pesomaximo';
+            document.getElementById("peso_tara").value        = '@Model.Pesotara';
+            document.getElementById("decimales").value        = '@Model.Decimales';
             document.getElementById("formato_etiqueta").value = '@Model.Formato_Etiqueta';
-            document.getElementById("temperatura").value = '@Model.Temperatura';
-            document.getElementById("clave_alm").value = '@Model.Clave_Alm';
-            document.getElementById("kilos_por_caja").value = '@Model.Kilos_Por_Caja';
-            document.getElementById("piezas_por_caja").value = '@Model.Piezas_Por_Caja';
+            document.getElementById("temperatura").value      = '@Model.Temperatura';
+            document.getElementById("clave_alm").value        = '@Model.Clave_Alm';
+            document.getElementById("kilos_por_caja").value   = '@Model.Kilos_Por_Caja';
+            document.getElementById("piezas_por_caja").value  = '@Model.Piezas_Por_Caja';
 
             //Datos de Caducidad
             document.getElementById("tipo_fecha_produccion").value = '@Model.Tipo_Fecha_Produccion';
-            document.getElementById("fecha_produccion").value = '@Model.Fecha_Produccion';
+            document.getElementById("fecha_produccion").value      = '@Model.Fecha_Produccion';
             document.getElementById("tipo_fecha_sacrificio").value = '@Model.Tipo_Fecha_Sacrificio';
-            document.getElementById("fecha_sacrificio").value = '@Model.Fecha_Sacrificio';
-            document.getElementById("tipo_fecha_caducidad").value = '@Model.Tipo_Fecha_Caducidad';
-            document.getElementById("dias_cad").value = '@Model.Diascad';
-            document.getElementById("calcula_dias_cad").value = '@Model.Calcula_Dias_Cad';
-            document.getElementById("copias").value = '@Model.Copias';
-            document.getElementById("otros").value = '@Model.Otros';
+            document.getElementById("fecha_sacrificio").value      = '@Model.Fecha_Sacrificio';
+            document.getElementById("tipo_fecha_caducidad").value  = '@Model.Tipo_Fecha_Caducidad';
+            document.getElementById("dias_cad").value              = '@Model.Diascad';
+            document.getElementById("calcula_dias_cad").value      = '@Model.Calcula_Dias_Cad';
+            document.getElementById("copias").value                = '@Model.Copias';
+            document.getElementById("otros").value                 = '@Model.Otros';
 
             var pData = "Producto=" + document.getElementById("clave").value.toString();
-            var pUrl = "/recetas/ObtenerLista_receta_productoM";
+            var pUrl  = "/recetas/ObtenerLista_receta_productoM";
             $.post(pUrl, pData, function (Result) {
 
                 for (var i = 0; i < Result.length; i++)
                 {
                     var pUrlModificarReceta = 'javascript:modificar_receta(' + Result[i].Id.toString() + ', "' + Result[i].Descripcion.toString() + '")';
-                    var pUrlEliminarReceta = 'javascript:eliminar_receta(' + Result[i].Id.toString() + ')';
+                    var pUrlEliminarReceta  = 'javascript:eliminar_receta(' + Result[i].Id.toString() + ')';
 
                     $("#tabla_recetas").append("<tr style='font-size: 10px;' id='trRecetaM" + Result[i].Id.toString() + "'><td>" + Result[i].Descripcion.toString() + "</td><td><a href='" + pUrlModificarReceta + "'>Modificar</a> <a href='" + pUrlEliminarReceta + "'>Eliminar</a></td>");
                 }
@@ -596,7 +596,7 @@
                 for (var i = 0; i < Result.length; i++) {
 
                     if (Result[i].Descripcion != "") {
-                        var o = new Option(Result[i].Descripcion, Result[i].Clave);
+                        var o       = new Option(Result[i].Descripcion, Result[i].Clave);
                         o.innerHTML = Result[i].Descripcion;
                         document.getElementById("ProductoReceta").appendChild(o);
                     }
@@ -632,13 +632,13 @@
         var pValue = document.getElementById("tipo_fecha_caducidad").value;
 
         if (pValue != 3) {
-            document.getElementById("fecha_caducidad").disabled = true;
-            document.getElementById("dias_cad").disabled = false;
+            document.getElementById("fecha_caducidad").disabled  = true;
+            document.getElementById("dias_cad").disabled         = false;
             document.getElementById("calcula_dias_cad").disabled = false;
         }
         else {
-            document.getElementById("fecha_caducidad").disabled = false;
-            document.getElementById("dias_cad").disabled = true;
+            document.getElementById("fecha_caducidad").disabled  = false;
+            document.getElementById("dias_cad").disabled         = true;
             document.getElementById("calcula_dias_cad").disabled = true;
         }
     }    function cancelar() {
@@ -647,8 +647,8 @@
         function guarda_producto() {
 
             //Codigos y otros datos
-            var pClave = document.getElementById("clave").value.toString();
-            var pDescripcion = document.getElementById("descripcion").value.toString();
+            var pClave            = document.getElementById("clave").value.toString();
+            var pDescripcion      = document.getElementById("descripcion").value.toString();
             var pCodigo_sap       = document.getElementById("codigo_sap").value.toString();
             var pCodigo_proveedor = document.getElementById("codigo_proveedor").value.toString();
 
@@ -717,7 +717,7 @@
 
         function agregar_receta() {
             $("#desc_receta").removeAttr('disabled');
-            var pClave = document.getElementById("clave").value.toString();
+            var pClave       = document.getElementById("clave").value.toString();
             var pDescripcion = document.getElementById("descripcion").value.toString();
             if (pDescripcion.length == 0) {
                 alert("La descripción no es válida");
@@ -748,8 +748,8 @@
         }
 
         function agregar_producto_receta() {
-            var pClaveR = document.getElementById("ClaveProductoReceta").value;
-            var pClaveRR = "'" + pClaveR + "'";
+            var pClaveR       = document.getElementById("ClaveProductoReceta").value;
+            var pClaveRR      = "'" + pClaveR + "'";
             var pDescripcionR = document.getElementById("ProductoReceta");
             var pDescripcionR = pDescripcionR.options[pDescripcionR.selectedIndex].text;
             var pRendimientoR = document.getElementById("Rendimiento").value;
@@ -760,8 +760,7 @@
                 return;
             }
 
-            var items = document.getElementsByClassName("rowReceta");
-
+            var items  = document.getElementsByClassName("rowReceta");
             var existe = false;
             $(items).each(function () {
                 if (this.innerText == pClaveR) {
@@ -778,7 +777,7 @@
 
         function remueve_producto_receta(pClaveR) {
             var tipo = document.getElementById("botonReceta").value;
-            var row = document.getElementById("trReceta" + pClaveR);
+            var row  = document.getElementById("trReceta" + pClaveR);
             if (tipo.localeCompare("Modificar") == 0 && row.children[0].id != -1) {
                 if (window.confirm("¿Eliminar producto modificado?")) {
                     row.style.display = 'none';
@@ -793,7 +792,7 @@
         function submit_form_receta() {
             var tipo = document.getElementById("botonReceta").value;
             if (tipo.localeCompare("Modificar") == 0) { update_form_receta(); return false; }
-            var pReceta = document.getElementById("idReceta").value;//ID de la receta
+            var pReceta    = document.getElementById("idReceta").value;//ID de la receta
             var pProductoX = document.getElementById("clave").value;//Clave del Producto Nuevo
             var descReceta = document.getElementById("desc_receta").value;//Descripcion de la receta
             if (descReceta.length == 0) {
@@ -809,10 +808,10 @@
             }
             //Guarda RecetaM
             var pData = "Id=" + pReceta + "&Producto=" + pProductoX + " &Descripcion=" + descReceta;
-            var pUrl = "/recetas/guarda_receta_productoM";
+            var pUrl  = "/recetas/guarda_receta_productoM";
             $.post(pUrl, pData, function (Result) {
                 var pUrlModificarReceta = 'javascript:modificar_receta(' + Result.Id.toString() + ', "' + descReceta + '")';
-                var pUrlEliminarReceta = 'javascript:eliminar_receta(' + Result.Id.toString() + ')';
+                var pUrlEliminarReceta  = 'javascript:eliminar_receta(' + Result.Id.toString() + ')';
 
 
                 //Recorriendo tabla y agregando productos
@@ -822,7 +821,7 @@
                     while (row = table.rows[r++]) {
                         //Guarda RecetaD Nota: Esto se debe realizar mediante un ciclo.
                         var pData2 = "Id=" + ResultClave + "&Id_Receta=" + Result.Id.toString() + "&Producto=" + row.children[0].innerText + " &Rendimiento=" + row.children[2].innerText; //verificar datos sean correctos
-                        var pUrl2 = "/recetas/guarda_receta_productoD";
+                        var pUrl2  = "/recetas/guarda_receta_productoD";
                         $.post(pUrl2, pData2, function (Result2) { });
                         ResultClave++;
                         alert(ResultClave);
@@ -843,8 +842,8 @@
                 return;
             }
 
-            var r = 0;
-            var table = document.getElementById("recetas_body");
+            var r      = 0;
+            var table  = document.getElementById("recetas_body");
             while (row = table.rows[r++]) {
                 //Actualiza RecetaD
                 if (row.style.display == 'none') {
@@ -855,7 +854,7 @@
                     if (row.children[0].id == -1) {
                         alert("Agregando Producto: "+row.children[1].innerText);
                         var pData2 = "Id=0&Id_Receta=" + pReceta + "&Producto=" + row.children[0].innerText + " &Rendimiento=" + row.children[2].innerText;
-                        var pUrl2 = "/recetas/guarda_receta_productoD";
+                        var pUrl2  = "/recetas/guarda_receta_productoD";
                         $.post(pUrl2, pData2, function (Result2) { });
                     }
 
@@ -900,7 +899,7 @@
                     pTabla.removeChild(pTabla.firstChild);
                 }
 
-                var pUrl0 = "/empaques/obtenerempaquesproducto";
+                var pUrl0  = "/empaques/obtenerempaquesproducto";
                 var pData0 = "Clave=" + document.getElementById("clave").value;
                 $.get(pUrl0, pData0, function (empaquesProd) {
                     var pUrl = "/empaques/obtenerlistatiposempaques";
@@ -908,7 +907,7 @@
                         var pUrl2 = "/empaques/obtenerempaques";
                         $.get(pUrl2, function (Result) {
                             for (var i = 0; i < Result.length; i++) {
-                                var pFila = document.createElement("tr");
+                                var pFila   = document.createElement("tr");
                                 var pCelda1 = document.createElement("td");
                                 var pCelda2 = document.createElement("td");
                                 var pCelda3 = document.createElement("td");
@@ -918,7 +917,7 @@
                                 pFila.appendChild(pCelda3);
 
                                 if (i == 0 || Result[i].IdTipoEmpaque != Result[i - 1].IdTipoEmpaque) {
-                                    var pFilaTipo = document.createElement("tr");
+                                    var pFilaTipo   = document.createElement("tr");
                                     var pCeldaTipo1 = document.createElement("th");
                                     var pCeldaTipo2 = document.createElement("th");
                                     var pCeldaTipo3 = document.createElement("th");
@@ -937,19 +936,19 @@
                                 }
 
                                 var pCheckBox = document.createElement("input");
-                                var pInput = document.createElement("input");
+                                var pInput    = document.createElement("input");
 
-                                pCheckBox.id = "chk";
-                                pCheckBox.type = "checkbox";
-                                pCheckBox.name = "chk";
+                                pCheckBox.id    = "chk";
+                                pCheckBox.type  = "checkbox";
+                                pCheckBox.name  = "chk";
                                 pCheckBox.value = Result[i].Clave;
                                 pCheckBox.setAttribute("onclick", "cambiarEstadoInput(this," + Result[i].Clave + ")");
 
                                 pCelda2.textContent = Result[i].Nombre;
-                                pInput.id = "inp" + Result[i].Clave;
+                                pInput.id           = "inp" + Result[i].Clave;
                                 pInput.setAttribute("class", "inputsCantidad");
-                                pInput.disabled = "disabled";
-                                pInput.name = "inp";
+                                pInput.disabled     = "disabled";
+                                pInput.name         = "inp";
 
                                 if (i == Result.length - 1) {
                                     $(".inputsCantidad").numeric(//Valida que solo se pueda introducir numeros en el input
@@ -985,7 +984,7 @@
 
             if (validarInputsVacios()) {
 
-                var pUrl = "/empaques/insertarempaquesproducto";
+                var pUrl  = "/empaques/insertarempaquesproducto";
                 var pData = "IdProducto=" + document.getElementById("clave").value +"&"+ $("#formaEmpaquesProducto").serialize();
                 alert("insertando: " + pData);
                 $.post(pUrl, pData, function (Result) {
@@ -1016,11 +1015,11 @@
             while (pTabla.firstChild) {//Limpia la tabla evitando duplicidades
                 pTabla.removeChild(pTabla.firstChild);
             }
-            document.getElementById("desc_receta").value = Receta;
+            document.getElementById("desc_receta").value    = Receta;
             document.getElementById("desc_receta").disabled = "disabled";
-            document.getElementById("idReceta").value = Id;
+            document.getElementById("idReceta").value       = Id;
 
-            var pUrl = "/Recetas/ObtenerLista_Receta_ProductoD";
+            var pUrl  = "/Recetas/ObtenerLista_Receta_ProductoD";
             var pData = "Id_Receta=" + Id;
             $.post(pUrl, pData, function (Result) {
                 for (var i = 0; i < Result.length; i++) {
@@ -1040,7 +1039,7 @@
         }
 
         function eliminar_receta(Id) {
-            var pUrl = "/Recetas/eliminarReceta";
+            var pUrl  = "/Recetas/eliminarReceta";
             var pData = "Id_Receta=" + Id;
             $.post(pUrl, pData, function (Result) {
 

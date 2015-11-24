@@ -145,7 +145,7 @@
             return;
 
         var pData = $("#FormaClasificacionCorte").serialize();
-        var pUrl = "/ClasificacionCortes/insertar";
+        var pUrl  = "/ClasificacionCortes/insertar";
 
         $.post(pUrl, pData, function (Result) {
             if (Result != null) {
