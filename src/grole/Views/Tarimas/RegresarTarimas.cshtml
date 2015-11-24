@@ -1,0 +1,58 @@
+﻿<h2>Regresar Tarima</h2>
+<form id="formaRegresarTarimas">
+    <label for="inpTarima">Tarima: </label>
+    <input type="text" value="" id="inpTarima" name="Folio"/>
+    <label for="inpMotivo">Motivo: </label>
+    <input type="text" value="" id="inpMotivo" name="Motivo"/>
+    <input type="submit" value="Información" onclick="informacion(event)" />
+</form>
+<div id="divPrincipal">
+    <table id="DatosTarima" style="display:none">
+        <tr>
+            <td><b>Folio:</b></td>
+            <td id="folio"></td>
+        <tr>
+        <tr>
+            <td><b>Fecha:</b></td>
+            <td id="fecha"></td>
+        <tr>
+        <tr>
+            <td><b>Cajas:</b></td>
+            <td id="cajas"></td>
+        <tr>
+        <tr>
+            <td><b>Kilos:</b></td>
+            <td id="kilos"></td>
+        <tr>
+        <tr>
+            <td><b>Fecha Salida:</b></td>
+            <td id="fechaSalida"></td>
+        <tr>
+        <tr>
+            <td><input type="button" id="btnRegresar" value="Regresar" onclick="regresar_tarima();"></td>
+            <td><input type="button" id="btnCancelar" value="Cancelar" onclick="cancelar();"></td>
+        <tr>
+    </table>
+</div>
+<script>
+    function informacion(e) {
+        e.preventDefault();
+
+        var pUrl  = "/tarimas/informaciongeneral";
+        var pData = $("#formaRegresarTarimas").serialize();
+        
+        $.get(pUrl, pData, function (Result) {
+            if (Result.codigo === "") {
+                $("#folio").text(Result.tarima.Folio);
+                $("#fecha").text(Result.tarima.Fecha);
+                $("#cajas").text(Result.tarima.Cajas);
+                $("#kilos").text(Result.tarima.Kilos);
+                $("#fechaSalida").text(Result.tarima.FechaHoraSistema);
+                $("#DatosTarima").show();
+            } else {
+                document.getElementById("divPrincipal").innerHTML = Result.codigo;
+            }
+        });
+
+    }
+</script>
