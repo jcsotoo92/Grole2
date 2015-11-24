@@ -24,7 +24,7 @@
 <script>
     $(document).ready(
         function () {
-            var pUrl = "/camaras/obtenercamara";
+            var pUrl  = "/camaras/obtenercamara";
             var pData = "Camara=" + @Context.Request.Query["Camara"];
 
             $.get(pUrl, pData, function(Result){

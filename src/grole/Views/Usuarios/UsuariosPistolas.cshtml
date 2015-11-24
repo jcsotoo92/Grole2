@@ -128,7 +128,7 @@
 	        var celdaModificar = document.createElement("td");
 	        var linkModificar  = document.createElement("a");
 	        var celdaEliminar  = document.createElement("td");
-	        var linkEliminar  = document.createElement("a");
+	        var linkEliminar   = document.createElement("a");
 
 	        celdaClave.textContent    = usuario.Clave;
 	        celdaNombre.textContent   = usuario.Nombre;
@@ -202,8 +202,8 @@
 	
 	function eliminarUsuario(clave){//Hace el post para eliminar un usuario de pistola de la base de datos
 		if(window.confirm("¿Eliminar usuario?")){
-			var pUrl="/usuarios/eliminarusuariopistola";
-			var pData="Clave="+clave;
+			var pUrl  = "/usuarios/eliminarusuariopistola";
+			var pData = "Clave="+clave;
 			$.post(pUrl,pData, function (Result){
 				if(Result.Result==true){
 					window.alert("Usuario eliminado con éxito");

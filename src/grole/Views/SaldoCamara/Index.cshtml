@@ -45,19 +45,19 @@
 		        pTabla.removeChild(pTabla.firstChild);
 		    }
 		    var pCamara = document.getElementById("Camara").value.toString(); // 123;
-			var pUrl = "/SaldoCamara/obtener_validaciones_camaras";
-			var pData = "ACamara=" + pCamara;
+			var pUrl    = "/SaldoCamara/obtener_validaciones_camaras";
+			var pData   = "ACamara=" + pCamara;
 			$.get(pUrl, pData, function (data) {
 			    for(var i=0; i<data.length; i++)
 			    {
 			        var pUrl2 = "/SaldoCamara/obtener_saldo_camara_producto";
-			        pData2 = "AProducto=" + data[i].Producto + "&ACamara=" + pCamara;
-			        var prod = data[i].Producto;
-			        var desc = data[i].Descripcion;
-			        var FmiP = data[i].Fecha_Min_Produccion;
-			        var FmaP = data[i].Fecha_Max_Produccion;
-			        var kiMX = data[i].Kilos_Maxim;
-			        var Caja = data[i].Cantidad_Maxim;
+			        pData2    = "AProducto=" + data[i].Producto + "&ACamara=" + pCamara;
+			        var prod  = data[i].Producto;
+			        var desc  = data[i].Descripcion;
+			        var FmiP  = data[i].Fecha_Min_Produccion;
+			        var FmaP  = data[i].Fecha_Max_Produccion;
+			        var kiMX  = data[i].Kilos_Maxim;
+			        var Caja  = data[i].Cantidad_Maxim;
 			        $.get(pUrl2, pData2, function (data2)
 			        {
 			            $("#camaraBody").append("<tr><td>" + prod + "</td><td>" + desc + "</td><td>" + Caja + "</td><td>" + kiMX + "</td><td>" + FmiP + "</td><td>" + FmaP + "</td><td>" + data2.Cajas + "</td><td>" + data2.Kilos + "</td><td>" + data2.Fecha_Min + "</td><td>" + data2.Fecha_Max + "</td></tr>");

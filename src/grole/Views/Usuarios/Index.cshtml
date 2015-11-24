@@ -103,7 +103,7 @@
 		var tablaDerechos = document.getElementById("tablaDerechos");
 		
 		$.get("/usuarios/obtenerclasificacionesderechos", function (pClasificaciones) {
-		    var pUrl = "/usuarios/obtenerderechosusuario";
+		    var pUrl  = "/usuarios/obtenerderechosusuario";
 		    var pData = "Clave=" + id;
 		    $.get(pUrl, pData, function (DerechosUsuario) {
 		        $.get("/usuarios/obtenerderechos", function (Result) {
@@ -190,7 +190,7 @@
 		if(!validarCamposVacios())
 			return;
 		
-		var pUrl = "/usuarios/insertar";
+		var pUrl   = "/usuarios/insertar";
 		var pDatos = $("#formaUsuario").serialize();
 		
 		$.post(pUrl, pDatos, function (Result){
@@ -328,8 +328,8 @@
 	
 	function eliminarUsuario(clave){//Hace el post para eliminar un usuario en la base de datos
 		if(window.confirm("¿Eliminar usuario?")){
-			var pUrl="/usuarios/eliminar";
-			var pData="Clave="+clave;
+			var pUrl  = "/usuarios/eliminar";
+			var pData = "Clave="+clave;
 			$.post(pUrl,pData, function (Result){
 				if(Result.Result==true){
 					window.alert("Usuario eliminado con éxito");

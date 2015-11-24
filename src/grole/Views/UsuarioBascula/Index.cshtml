@@ -110,12 +110,12 @@
                 modal: true,
                 open: function (event, ui) {
 					
-                document.getElementById("mopClave").value = "" + AClave;					
+                document.getElementById("mopClave").value    = "" + AClave;					
         		document.getElementById("mopNombre").focus();
-				document.getElementById("mopNombre").value = "" + ANombre;
+				document.getElementById("mopNombre").value   = "" + ANombre;
 				document.getElementById("mopPassword").value = "" + AContrasena;
-				document.getElementById("mopTitular").value = "" + ATitular;
-				document.getElementById("mopLotes").value = "" + ALotes;
+				document.getElementById("mopTitular").value  = "" + ATitular;
+				document.getElementById("mopLotes").value    = "" + ALotes;
 				}
             });
 		
@@ -144,31 +144,31 @@
 	{
 		//File a insertar
 		var pFila = document.createElement("tr");
-		pFila.id = "tr" + AUsuarioBascula.CLAVE;
+		pFila.id  = "tr" + AUsuarioBascula.CLAVE;
 		//Clave
-		var pCeldaClave = document.createElement("td");
+		var pCeldaClave         = document.createElement("td");
 		pCeldaClave.textContent = AUsuarioBascula.CLAVE;
 		//Nombre
-		var pCeldaNombre = document.createElement("td");
+		var pCeldaNombre         = document.createElement("td");
 		pCeldaNombre.textContent = AUsuarioBascula.NOMBRE;
 		//Password
-		var pCeldaPassword = document.createElement("td");
+		var pCeldaPassword         = document.createElement("td");
 		pCeldaPassword.textContent = "*****";
 		//Titular
-		var pCeldaTitular = document.createElement("td");
+		var pCeldaTitular         = document.createElement("td");
 		pCeldaTitular.textContent = AUsuarioBascula.TITULAR;
 		//Lotes
-		var pCeldaLotes = document.createElement("td");
+		var pCeldaLotes         = document.createElement("td");
 		pCeldaLotes.textContent = AUsuarioBascula.LOTES;
 		//Eliminar Usuario
-		var pCeldaEliminar = document.createElement("td");
-		var pAnchorEliminar = document.createElement("a");
-		pAnchorEliminar.href = "javascript:eliminarUsuario('" + AUsuarioBascula.CLAVE +"');";
+		var pCeldaEliminar          = document.createElement("td");
+		var pAnchorEliminar         = document.createElement("a");
+		pAnchorEliminar.href        = "javascript:eliminarUsuario('" + AUsuarioBascula.CLAVE +"');";
 		pAnchorEliminar.textContent = "Eliminar";
 		pCeldaEliminar.appendChild(pAnchorEliminar);
 		//Modificar Usuario
-		var pCeldaModificar = document.createElement("td");
-		var pAnchorModificar = document.createElement("a");
+		var pCeldaModificar   = document.createElement("td");
+		var pAnchorModificar  = document.createElement("a");
 		pAnchorModificar.href = "javascript:modificarUsuario('"+AUsuarioBascula.CLAVE+"','"+AUsuarioBascula.NOMBRE+"','"+AUsuarioBascula.CONTRASENA+"','"+AUsuarioBascula.TITULAR+"','"+AUsuarioBascula.LOTES+"');";
 		pAnchorModificar.textContent = "Editar";
 		pCeldaModificar.appendChild(pAnchorModificar);
@@ -221,7 +221,7 @@ function guarda_usuario_bascula()
 			return false;
 		}
 		var pData = "NOMBRE=" + pNombre + "&CONTRASENA=" + pPassword + "&TITULAR=" + pTitular + "&LOTES=" + pLotes;
-		var pUrl = "/UsuarioBascula/insertar";
+		var pUrl  = "/UsuarioBascula/insertar";
 		$.post(pUrl, pData, function(Result)
 			{
 				$(".ui-dialog-titlebar-close").trigger('click');
@@ -236,7 +236,7 @@ function guarda_usuario_bascula()
 			return;
 		}
 		
-		var pUrl = "/UsuarioBascula/eliminar";
+		var pUrl  = "/UsuarioBascula/eliminar";
 		var pData = "Clave=" + AClave.toString();
 		
 		$.post(pUrl, pData, function(Result)
@@ -254,8 +254,8 @@ function guarda_usuario_bascula()
 	
 	function actualiza_usuario_bascula()
 	{
-		var pClave = document.getElementById("mopClave").value;
-		var pNombre = document.getElementById("mopNombre").value;
+		var pClave    = document.getElementById("mopClave").value;
+		var pNombre   = document.getElementById("mopNombre").value;
 		var pPassword = document.getElementById("mopPassword").value;
 		if (pPassword.trim().length == 0)
 		{
@@ -280,7 +280,7 @@ function guarda_usuario_bascula()
 		
 		
 		var pData = "CLAVE=" + pClave + "&NOMBRE=" + pNombre + "&CONTRASENA=" + pPassword + "&TITULAR=" + pTitular + "&LOTES=" + pLotes;
-		var pUrl = "/UsuarioBascula/modificar";
+		var pUrl  = "/UsuarioBascula/modificar";
 		
 		$.post(pUrl, pData, function(Result)
 			{
@@ -295,7 +295,7 @@ function guarda_usuario_bascula()
 		var pBusqueda = document.getElementById("Buscar").value;
 		
 		var pData = "Filtrado=" + pBusqueda;
-		var pUrl = "/UsuarioBascula/Buscar";
+		var pUrl  = "/UsuarioBascula/Buscar";
 		$.post(pUrl, pData, function(Result)
 			{
 				$(".ui-dialog-titlebar-close").trigger('click');

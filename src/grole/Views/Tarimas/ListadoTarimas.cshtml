@@ -41,7 +41,7 @@
     function consultar(e) {
         e.preventDefault();
 
-        var pUrl = "/tarimas/obtenerlistadotablatarimas";
+        var pUrl  = "/tarimas/obtenerlistadotablatarimas";
         var pData = $("#formaMovimientosTarimas").serialize();
 
         $.get(pUrl, pData, function (Result) {
