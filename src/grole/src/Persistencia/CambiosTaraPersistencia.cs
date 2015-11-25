@@ -65,11 +65,11 @@ namespace grole.src.Persistencia
             FbConnection con = _Conexiones.ObtenerConexion();
 
             FbCommand com = new FbCommand(pSentencia, con);
-            com.Parameters.Add("@PRODUCTO", FbDbType.VarChar).Value = AProducto;
+            com.Parameters.Add("@PRODUCTO", FbDbType.VarChar).Value      = AProducto;
             com.Parameters.Add("@FECHACAMBIO", FbDbType.TimeStamp).Value = AFecha.ToShortDateString();
-            com.Parameters.Add("@TARAANTERIOR", FbDbType.Numeric).Value = ATaraAnterior;
-            com.Parameters.Add("@TARANUEVA", FbDbType.Numeric).Value = ATaraNueva;
-            com.Parameters.Add("@USUARIO", FbDbType.VarChar).Value = AUsuario;
+            com.Parameters.Add("@TARAANTERIOR", FbDbType.Numeric).Value  = ATaraAnterior;
+            com.Parameters.Add("@TARANUEVA", FbDbType.Numeric).Value     = ATaraNueva;
+            com.Parameters.Add("@USUARIO", FbDbType.VarChar).Value       = AUsuario;
             
             try
             {

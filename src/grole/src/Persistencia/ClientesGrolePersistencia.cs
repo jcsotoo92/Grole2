@@ -33,8 +33,8 @@ namespace grole.src.Persistencia
 				while (reader.Read())
 				{
 					ClienteGrole pClienteGrole = new ClienteGrole();
-					pClienteGrole.Id  = reader.GetInt32(0);
-					pClienteGrole.Nombre = reader.GetString(1);
+					pClienteGrole.Id           = reader.GetInt32(0);
+					pClienteGrole.Nombre       = reader.GetString(1);
 					pResult.Add(pClienteGrole);
 					
 				}
@@ -95,8 +95,8 @@ namespace grole.src.Persistencia
 				
 				if (reader.Read())
 				{
-					pResult = new ClienteGrole();
-					pResult.Id = reader.GetInt32(0);
+					pResult        = new ClienteGrole();
+					pResult.Id     = reader.GetInt32(0);
 					pResult.Nombre = reader.GetString(1);
 				}
 			}
@@ -117,7 +117,7 @@ namespace grole.src.Persistencia
 			FbConnection con  = _Conexiones.ObtenerConexion();
 			
 			FbCommand com = new FbCommand(pSentencia, con);
-			com.Parameters.Add("ID", FbDbType.Integer).Value = AClienteGrole.Id;
+			com.Parameters.Add("ID", FbDbType.Integer).Value     = AClienteGrole.Id;
 			com.Parameters.Add("NOMBRE", FbDbType.VarChar).Value = AClienteGrole.Nombre;
 			try
 			{
@@ -190,8 +190,8 @@ namespace grole.src.Persistencia
 				{
 					
 					ClienteGrole pClienteGrole = new ClienteGrole();
-					pClienteGrole.Id = reader.GetInt32(0);/*(string)reader["Id"]*/
-					pClienteGrole.Nombre = reader.GetString(1);/*(string)reader["Nombre"];*/
+					pClienteGrole.Id           = reader.GetInt32(0);/*(string)reader["Id"]*/
+					pClienteGrole.Nombre       = reader.GetString(1);/*(string)reader["Nombre"];*/
 					pResult.Add(pClienteGrole);
 				}
 			}

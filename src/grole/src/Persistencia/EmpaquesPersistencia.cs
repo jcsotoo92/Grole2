@@ -119,11 +119,11 @@ namespace grole.src.Persistencia
             FbConnection con = _Conexion.ObtenerConexion();
 
             FbCommand com = new FbCommand(pSentencia, con);
-            com.Parameters.Add("@CLAVE", FbDbType.Integer).Value = AEmpaque.Clave;
+            com.Parameters.Add("@CLAVE", FbDbType.Integer).Value         = AEmpaque.Clave;
             com.Parameters.Add("@IDTIPOEMPAQUE", FbDbType.Integer).Value = AEmpaque.IdTipoEmpaque;
-            com.Parameters.Add("@NOMBRE", FbDbType.VarChar).Value = AEmpaque.Nombre;
-            com.Parameters.Add("@CODIGOSAP", FbDbType.VarChar).Value = AEmpaque.CodigoSAP;
-            com.Parameters.Add("@COSTO", FbDbType.Numeric).Value = AEmpaque.Costo;
+            com.Parameters.Add("@NOMBRE", FbDbType.VarChar).Value        = AEmpaque.Nombre;
+            com.Parameters.Add("@CODIGOSAP", FbDbType.VarChar).Value     = AEmpaque.CodigoSAP;
+            com.Parameters.Add("@COSTO", FbDbType.Numeric).Value         = AEmpaque.Costo;
 
             FbParameter pOutParameter = new FbParameter("@ID", FbDbType.Integer);
             pOutParameter.Direction = ParameterDirection.Output;
@@ -261,11 +261,11 @@ namespace grole.src.Persistencia
                 FbDataReader reader = com.ExecuteReader();
                 while (reader.Read())
                 {
-                    pEmpaqueProducto = new EmpaqueProducto();
-                    pEmpaqueProducto.Id = (int)reader["ID"];
+                    pEmpaqueProducto               = new EmpaqueProducto();
+                    pEmpaqueProducto.Id            = (int)reader["ID"];
                     pEmpaqueProducto.ClaveProducto = (reader["CLAVE_PRODUCTO"] != DBNull.Value) ? (string)reader["CLAVE_PRODUCTO"] : "";
-                    pEmpaqueProducto.IdEmpaque = (int)reader["ID_EMPAQUE"];
-                    pEmpaqueProducto.Cantidad = (decimal)reader["CANTIDAD"];
+                    pEmpaqueProducto.IdEmpaque     = (int)reader["ID_EMPAQUE"];
+                    pEmpaqueProducto.Cantidad      = (decimal)reader["CANTIDAD"];
                     pResult.Add(pEmpaqueProducto);
                 }
             }
@@ -357,8 +357,8 @@ namespace grole.src.Persistencia
 
                 FbCommand com = new FbCommand(pSentencia, con);
                 com.Parameters.Add("@CLAVEPRODUCTO", FbDbType.VarChar).Value = AIdProducto;
-                com.Parameters.Add("@IDEMPAQUE", FbDbType.Integer).Value = Achk[i];
-                com.Parameters.Add("@CANTIDAD", FbDbType.Numeric).Value = Ainp[i];
+                com.Parameters.Add("@IDEMPAQUE", FbDbType.Integer).Value     = Achk[i];
+                com.Parameters.Add("@CANTIDAD", FbDbType.Numeric).Value      = Ainp[i];
                 
                 try
                 {
@@ -384,7 +384,7 @@ namespace grole.src.Persistencia
         
         public TipoEmpaque AgregarTipoEmpaque(TipoEmpaque ATipoEmpaque){
             string pSentencia = "INSERT INTO DRASTIPOSEMPAQUE(NOMBRE) VALUES(@NOMBRE) RETURNING ID";
-            FbConnection con = _Conexion.ObtenerConexion();
+            FbConnection con  = _Conexion.ObtenerConexion();
 
 
             FbCommand com = new FbCommand(pSentencia, con);
@@ -416,7 +416,7 @@ namespace grole.src.Persistencia
 
             
             FbCommand com = new FbCommand(pSentencia, con);
-            com.Parameters.Add("@CLAVE", FbDbType.Integer).Value = ATipoEmpaque.Id;
+            com.Parameters.Add("@CLAVE", FbDbType.Integer).Value  = ATipoEmpaque.Id;
             com.Parameters.Add("@NOMBRE", FbDbType.VarChar).Value = ATipoEmpaque.Nombre;
 
             FbParameter pOutParameter = new FbParameter("@ID", FbDbType.Integer);

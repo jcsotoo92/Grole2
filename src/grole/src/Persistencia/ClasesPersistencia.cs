@@ -32,12 +32,12 @@ namespace grole.src.Persistencia
 				
 				while (reader.Read())
 				{
-					Clase pClase = new Clase();
-					pClase.Clave  = reader.GetInt32(0);
+					Clase pClase       = new Clase();
+					pClase.Clave       = reader.GetInt32(0);
 					pClase.Descripcion = reader.GetString(1);
 					pClase.Manejaextra = reader.GetString(2);
-					pClase.Tipo = reader.GetString(3);
-					pClase.Activo = reader.GetString(4);
+					pClase.Tipo        = reader.GetString(3);
+					pClase.Activo      = reader.GetString(4);
 					
 					pResult.Add(pClase);
 					
@@ -62,11 +62,11 @@ namespace grole.src.Persistencia
 			FbConnection con  = _Conexiones.ObtenerConexion();
 			
 			FbCommand com = new FbCommand(pSentencia, con);
-            com.Parameters.Add("@CLAVE", FbDbType.Integer).Value = AClase.Clave;
+            com.Parameters.Add("@CLAVE", FbDbType.Integer).Value       = AClase.Clave;
 			com.Parameters.Add("@DESCRIPCION", FbDbType.VarChar).Value = AClase.Descripcion;			
 			com.Parameters.Add("@MANEJAEXTRA", FbDbType.VarChar).Value = AClase.Manejaextra;	
-			com.Parameters.Add("@TIPO", FbDbType.VarChar).Value = AClase.Tipo;
-			com.Parameters.Add("@ACTIVO", FbDbType.SmallInt).Value = AClase.Activo;
+			com.Parameters.Add("@TIPO", FbDbType.VarChar).Value        = AClase.Tipo;
+			com.Parameters.Add("@ACTIVO", FbDbType.SmallInt).Value     = AClase.Activo;
 			try
 			{
 				con.Open();
@@ -103,12 +103,12 @@ namespace grole.src.Persistencia
 				
 				if (reader.Read())
 				{
-					pResult = new Clase();
-					pResult.Clave = reader.GetInt32(0);
+					pResult             = new Clase();
+					pResult.Clave       = reader.GetInt32(0);
 					pResult.Descripcion = reader.GetString(1);
 					pResult.Manejaextra = reader.GetString(2);
-					pResult.Tipo = reader.GetString(3);
-					pResult.Activo = reader.GetString(4);
+					pResult.Tipo        = reader.GetString(3);
+					pResult.Activo      = reader.GetString(4);
 				}
 			}
 			finally
@@ -128,11 +128,11 @@ namespace grole.src.Persistencia
 			FbConnection con  = _Conexiones.ObtenerConexion();
 			
 			FbCommand com = new FbCommand(pSentencia, con);
-			com.Parameters.Add("CLAVE", FbDbType.Integer).Value = AClase.Clave;
+			com.Parameters.Add("CLAVE", FbDbType.Integer).Value       = AClase.Clave;
 			com.Parameters.Add("DESCRIPCION", FbDbType.VarChar).Value = AClase.Descripcion;
 			com.Parameters.Add("MANEJAEXTRA", FbDbType.VarChar).Value = AClase.Manejaextra;
-			com.Parameters.Add("TIPO", FbDbType.VarChar).Value = AClase.Tipo;
-			com.Parameters.Add("ACTIVO", FbDbType.VarChar).Value = AClase.Activo;
+			com.Parameters.Add("TIPO", FbDbType.VarChar).Value        = AClase.Tipo;
+			com.Parameters.Add("ACTIVO", FbDbType.VarChar).Value      = AClase.Activo;
 			
 			try
 			{

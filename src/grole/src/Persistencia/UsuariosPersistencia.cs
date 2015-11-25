@@ -164,12 +164,12 @@ namespace grole.src.Persistencia
 			FbConnection con = _Conexion.ObtenerConexion();
 			
 			FbCommand com = new FbCommand(pSentencia,con);
-			com.Parameters.Add("@IDUSUARIO", FbDbType.Integer).Value = AUsuario;
-			com.Parameters.Add("@IDDERECHO", FbDbType.Integer).Value = ADerecho.IdDerecho;
-			com.Parameters.Add("@CONTROLADOR", FbDbType.VarChar).Value = ADerecho.Controlador;
-			com.Parameters.Add("@MENU", FbDbType.VarChar).Value = ADerecho.Menu;
-			com.Parameters.Add("@CLASIFICACION", FbDbType.VarChar).Value = ADerecho.Clasificacion;
-			com.Parameters.Add("@PUEDEELIMINARORDEN", FbDbType.VarChar).Value = APuedeEliminarOrden;
+			com.Parameters.Add("@IDUSUARIO", FbDbType.Integer).Value           = AUsuario;
+			com.Parameters.Add("@IDDERECHO", FbDbType.Integer).Value           = ADerecho.IdDerecho;
+			com.Parameters.Add("@CONTROLADOR", FbDbType.VarChar).Value         = ADerecho.Controlador;
+			com.Parameters.Add("@MENU", FbDbType.VarChar).Value                = ADerecho.Menu;
+			com.Parameters.Add("@CLASIFICACION", FbDbType.VarChar).Value       = ADerecho.Clasificacion;
+			com.Parameters.Add("@PUEDEELIMINARORDEN", FbDbType.VarChar).Value  = APuedeEliminarOrden;
 			com.Parameters.Add("@PUEDEMODIFICARORDEN", FbDbType.VarChar).Value = APuedeModificarOrden;
 			
 			FbParameter pOutParameter = new FbParameter("@ID", FbDbType.Integer);
@@ -287,10 +287,10 @@ namespace grole.src.Persistencia
 			FbConnection con = _Conexion.ObtenerConexion();
 			
 			FbCommand com = new FbCommand(pSentencia,con);
-			com.Parameters.Add("@NOMBRE", FbDbType.VarChar).Value = AUsuario.Nombre;
-			com.Parameters.Add("@CORREO", FbDbType.VarChar).Value = AUsuario.Correo;
+			com.Parameters.Add("@NOMBRE", FbDbType.VarChar).Value  = AUsuario.Nombre;
+			com.Parameters.Add("@CORREO", FbDbType.VarChar).Value  = AUsuario.Correo;
 			com.Parameters.Add("@USUARIO", FbDbType.VarChar).Value = AUsuario.User;
-			com.Parameters.Add("@PASS", FbDbType.VarChar).Value = AUsuario.Pass;
+			com.Parameters.Add("@PASS", FbDbType.VarChar).Value    = AUsuario.Pass;
 			
 			FbParameter pOutParameter = new FbParameter("@ID", FbDbType.Integer);
 			pOutParameter.Direction = ParameterDirection.Output;
@@ -353,7 +353,7 @@ namespace grole.src.Persistencia
 			FbConnection con  = _Conexion.ObtenerConexion();
 			
 			FbCommand com = new FbCommand(pSentencia, con);
-			com.Parameters.Add("@CLAVE", FbDbType.VarChar).Value  = AUser.Clave;
+			com.Parameters.Add("@CLAVE", FbDbType.VarChar).Value   = AUser.Clave;
 			com.Parameters.Add("@NOMBRE", FbDbType.VarChar).Value  = AUser.Nombre;
 			com.Parameters.Add("@CORREO", FbDbType.VarChar).Value  = AUser.Correo;
 			com.Parameters.Add("@USUARIO", FbDbType.VarChar).Value = AUser.User;

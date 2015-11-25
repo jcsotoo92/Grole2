@@ -157,7 +157,7 @@ namespace grole.src.Persistencia
 
             FbCommand com = new FbCommand(pSentencia, con);
             com.Parameters.Add("@CATEGORIA", FbDbType.VarChar).Value = ACategoria.Cat;
-            com.Parameters.Add("@ACTIVO", FbDbType.VarChar).Value = ACategoria.Activo;
+            com.Parameters.Add("@ACTIVO", FbDbType.VarChar).Value    = ACategoria.Activo;
             FbParameter pOutParameter = new FbParameter("@ID", FbDbType.Integer);
             pOutParameter.Direction = ParameterDirection.Output;
             com.Parameters.Add(pOutParameter);
@@ -185,9 +185,9 @@ namespace grole.src.Persistencia
             FbConnection con = _Conexiones.ObtenerConexion();
 
             FbCommand com = new FbCommand(pSentencia, con);
-            com.Parameters.Add("@IDD", FbDbType.Integer).Value = ACategoria.Id;
+            com.Parameters.Add("@IDD", FbDbType.Integer).Value       = ACategoria.Id;
             com.Parameters.Add("@CATEGORIA", FbDbType.VarChar).Value = ACategoria.Cat;
-            com.Parameters.Add("@ACTIVO", FbDbType.VarChar).Value = ACategoria.Activo;
+            com.Parameters.Add("@ACTIVO", FbDbType.VarChar).Value    = ACategoria.Activo;
 
             FbParameter pOutParameter = new FbParameter("@ID", FbDbType.Integer);
             pOutParameter.Direction = ParameterDirection.Output;

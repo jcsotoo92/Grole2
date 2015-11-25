@@ -51,8 +51,8 @@ namespace grole.src.Persistencia
             FbConnection con = _Conexiones.ObtenerConexion();
 
             FbCommand com = new FbCommand(pSentencia, con);
-            com.Parameters.Add("@ID", FbDbType.Integer).Value = AReceta.Id;
-            com.Parameters.Add("@PRODUCTO", FbDbType.VarChar).Value = AReceta.Producto;
+            com.Parameters.Add("@ID", FbDbType.Integer).Value          = AReceta.Id;
+            com.Parameters.Add("@PRODUCTO", FbDbType.VarChar).Value    = AReceta.Producto;
             com.Parameters.Add("@DESCRIPCION", FbDbType.VarChar).Value = AReceta.Descripcion;
             try
             {
@@ -79,9 +79,9 @@ namespace grole.src.Persistencia
             FbConnection con = _Conexiones.ObtenerConexion();
 
             FbCommand com = new FbCommand(pSentencia, con);
-            com.Parameters.Add("@ID", FbDbType.Integer).Value = AReceta.Id;
-            com.Parameters.Add("@ID_RECETA", FbDbType.Integer).Value = AReceta.Id_Receta;
-            com.Parameters.Add("@PRODUCTO", FbDbType.VarChar).Value = AReceta.Producto;
+            com.Parameters.Add("@ID", FbDbType.Integer).Value          = AReceta.Id;
+            com.Parameters.Add("@ID_RECETA", FbDbType.Integer).Value   = AReceta.Id_Receta;
+            com.Parameters.Add("@PRODUCTO", FbDbType.VarChar).Value    = AReceta.Producto;
             com.Parameters.Add("@RENDIMIENTO", FbDbType.VarChar).Value = AReceta.Rendimiento;
             try
             {
@@ -112,9 +112,9 @@ namespace grole.src.Persistencia
                 FbDataReader reader = com.ExecuteReader();
                 while (reader.Read())
                 {
-                    RecetaM pReceta = new RecetaM();
-                    pReceta.Id = reader.GetInt32(0);
-                    pReceta.Producto = reader.GetString(1);
+                    RecetaM pReceta     = new RecetaM();
+                    pReceta.Id          = reader.GetInt32(0);
+                    pReceta.Producto    = reader.GetString(1);
                     pReceta.Descripcion = reader.GetString(2);
                     pResult.Add(pReceta);
                 }
@@ -143,11 +143,11 @@ namespace grole.src.Persistencia
                 FbDataReader reader = com.ExecuteReader();
                 while (reader.Read())
                 {
-                    RecetaD pReceta = new RecetaD();
-                    pReceta.Id = reader.GetInt32(0);
-                    pReceta.Id_Receta = reader.GetInt32(1);
-                    pReceta.Producto = reader.GetString(2);
-                    pReceta.Rendimiento = reader.GetInt32(3);
+                    RecetaD pReceta             = new RecetaD();
+                    pReceta.Id                  = reader.GetInt32(0);
+                    pReceta.Id_Receta           = reader.GetInt32(1);
+                    pReceta.Producto            = reader.GetString(2);
+                    pReceta.Rendimiento         = reader.GetInt32(3);
                     pReceta.DescripcionProducto = reader.GetString(4);
                     pResult.Add(pReceta);
                 }
@@ -213,9 +213,9 @@ namespace grole.src.Persistencia
             String pSentencia = "UPDATE DRASRECETAD SET PRODUCTO=@PRODUCTO, RENDIMIENTO=@RENDIMIENTO WHERE ID=@ID";
             FbConnection con = _Conexiones.ObtenerConexion();
             FbCommand com = new FbCommand(pSentencia, con);
-            com.Parameters.Add("PRODUCTO", FbDbType.Integer).Value = AReceta.Producto;
+            com.Parameters.Add("PRODUCTO", FbDbType.Integer).Value    = AReceta.Producto;
             com.Parameters.Add("RENDIMIENTO", FbDbType.Integer).Value = AReceta.Rendimiento;
-            com.Parameters.Add("ID", FbDbType.Integer).Value = AReceta.Id;
+            com.Parameters.Add("ID", FbDbType.Integer).Value          = AReceta.Id;
 
             try
             {
@@ -237,9 +237,9 @@ namespace grole.src.Persistencia
             string pSentencia = "UPDATE DRASRECETAM SET PRODUCTO=@PRODUCTO, DESCRIPCION=@DESCRIPCION WHERE ID=@ID";
             FbConnection con = _Conexiones.ObtenerConexion();
             FbCommand com = new FbCommand(pSentencia, con);
-            com.Parameters.Add("PRODUCTO", FbDbType.Integer).Value = AReceta.Producto;
+            com.Parameters.Add("PRODUCTO", FbDbType.Integer).Value    = AReceta.Producto;
             com.Parameters.Add("DESCRIPCION", FbDbType.Integer).Value = AReceta.Descripcion;
-            com.Parameters.Add("ID", FbDbType.Integer).Value = AReceta.Id;
+            com.Parameters.Add("ID", FbDbType.Integer).Value          = AReceta.Id;
 
             try
             {

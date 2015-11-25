@@ -29,12 +29,12 @@ namespace grole.src.Persistencia
 				FbDataReader reader = com.ExecuteReader();
 				while (reader.Read())
 				{
-					CostoMaquilaM pCostoMaquila = new CostoMaquilaM();
-					pCostoMaquila.Id  = reader.GetInt32(0);
-					pCostoMaquila.Fecha = reader.GetString(1);
-					pCostoMaquila.FechaFinal = reader.GetString(2);
-					pCostoMaquila.Descripcion = reader.GetString(3);
-					pCostoMaquila.Activo = reader.GetString(4);
+					CostoMaquilaM pCostoMaquila    = new CostoMaquilaM();
+					pCostoMaquila.Id               = reader.GetInt32(0);
+					pCostoMaquila.Fecha            = reader.GetString(1);
+					pCostoMaquila.FechaFinal       = reader.GetString(2);
+					pCostoMaquila.Descripcion      = reader.GetString(3);
+					pCostoMaquila.Activo           = reader.GetString(4);
 					pCostoMaquila.FechaHoraSistema = reader.GetString(5);
 					pResult.Add(pCostoMaquila);				
 				}
@@ -66,11 +66,11 @@ namespace grole.src.Persistencia
 				if (reader.Read())
 				{
 					
-					pResult.Id  = reader.GetInt32(0);
-					pResult.Fecha = reader.GetString(1);
-					pResult.FechaFinal = reader.GetString(2);
-					pResult.Descripcion = reader.GetString(3);
-					pResult.Activo = reader.GetString(4);
+					pResult.Id               = reader.GetInt32(0);
+					pResult.Fecha            = reader.GetString(1);
+					pResult.FechaFinal       = reader.GetString(2);
+					pResult.Descripcion      = reader.GetString(3);
+					pResult.Activo           = reader.GetString(4);
 					pResult.FechaHoraSistema = reader.GetString(5);	
 				}
 			}
