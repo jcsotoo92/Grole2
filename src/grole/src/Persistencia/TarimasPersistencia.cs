@@ -352,5 +352,80 @@ namespace grole.src.Persistencia
 
             return pListaSalidas;
         }
+
+        public void GuardarLogTarimaRegresada(int AFolioTarima, string AMotivo, string AUsuario)
+        {
+            Tarima pTarima = ObtenerTarima(AFolioTarima);
+
+            string pSentencia = "INSERT INTO LOG_TARIMAS_REGRESADAS (ID_TARIMA, CAJAS_TARIMA, KILOS_TARIMA, USUARIO, MOTIVO) VALUES (@FOLIOTARIMA, @CAJAS, @KILOS, @USUARIO, @MOTIVO)";
+            FbConnection con = _Conexiones.ObtenerConexion();
+
+            FbCommand com = new FbCommand(pSentencia, con);
+            com.Parameters.Add("@FOLIOTARIMA", FbDbType.Integer).Value = AFolioTarima;
+            com.Parameters.Add("@CAJAS", FbDbType.Integer).Value       = pTarima.Cajas;
+            com.Parameters.Add("@KILOS", FbDbType.Numeric).Value       = pTarima.Kilos;
+            com.Parameters.Add("@USUARIO", FbDbType.VarChar).Value     = AUsuario;
+            com.Parameters.Add("@MOTIVO", FbDbType.VarChar).Value      = AMotivo;
+            try
+            {
+                con.Open();
+
+                com.ExecuteNonQuery();
+                
+            }
+            finally
+            {
+                if (con.State == System.Data.ConnectionState.Open)
+                {
+                    con.Close();
+                }
+            }
+        }
+
+        public int RegresarTarima(int AFolioTarima, string AMotivo, string AUsuario)
+        {
+            int pAffected = 0;
+            string pSentencia1 = "DELETE FROM DRASSALIDAS WHERE ID_TARIMA = @FOLIOTARIMA";
+            string pSentencia2 = "DELETE FROM SALIDASD WHERE ID_TARIMA = @FOLIOTARIMA";
+            string pSentencia3 = "UPDATE DRASTARM SET ESTATUS = 'C' WHERE FOLIO = @FOLIOTARIMA";
+            string pSentencia4 = "UPDATE DRASCORT SET ID_SALIDA = NULL, SALIDA_APLICADA = NULL WHERE TARIMA = @FOLIOTARIMA";
+            string pSentencia5 = "UPDATE DRASCORT SET EMBARCADO = 'No' WHERE TARIMA = @FOLIOTARIMA";
+            FbConnection con = _Conexiones.ObtenerConexion();
+
+            FbCommand com1 = new FbCommand(pSentencia1, con);
+            FbCommand com2 = new FbCommand(pSentencia2, con);
+            FbCommand com3 = new FbCommand(pSentencia3, con);
+            FbCommand com4 = new FbCommand(pSentencia4, con);
+            FbCommand com5 = new FbCommand(pSentencia5, con);
+
+            com1.Parameters.Add("@FOLIOTARIMA", FbDbType.Integer).Value = AFolioTarima;
+            com2.Parameters.Add("@FOLIOTARIMA", FbDbType.Integer).Value = AFolioTarima;
+            com3.Parameters.Add("@FOLIOTARIMA", FbDbType.Integer).Value = AFolioTarima;
+            com4.Parameters.Add("@FOLIOTARIMA", FbDbType.Integer).Value = AFolioTarima;
+            com5.Parameters.Add("@FOLIOTARIMA", FbDbType.Integer).Value = AFolioTarima;
+            try
+            {
+                con.Open();
+
+                pAffected += com1.ExecuteNonQuery();
+                pAffected += com2.ExecuteNonQuery();
+                pAffected += com3.ExecuteNonQuery();
+                pAffected += com4.ExecuteNonQuery();
+                pAffected += com5.ExecuteNonQuery();
+
+                if(pAffected > 0)
+                {
+                    GuardarLogTarimaRegresada(AFolioTarima, AMotivo, AUsuario);
+                }
+            }
+            finally
+            {
+                if (con.State == System.Data.ConnectionState.Open)
+                {
+                    con.Close();
+                }
+            }
+            return pAffected;
+        }
     }
 }

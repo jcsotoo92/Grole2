@@ -1,10 +1,10 @@
 ﻿<h2>Regresar Tarima</h2>
 <form id="formaRegresarTarimas">
     <label for="inpTarima">Tarima: </label>
-    <input type="text" value="" id="inpTarima" name="Folio"/>
+    <input type="text" value="" id="inpTarima" name="FolioTarima"/>
     <label for="inpMotivo">Motivo: </label>
-    <input type="text" value="" id="inpMotivo" name="Motivo"/>
-    <input type="submit" value="Información" onclick="informacion(event)" />
+    <input type="text" value="" id="inpMotivo" name="Motivo" maxlength="255"/>
+    <input type="submit" value="Información" onclick="informacion(event)" id="btnInformacion" />
 </form>
 <div id="divPrincipal">
     <table id="DatosTarima" style="display:none">
@@ -29,12 +29,24 @@
             <td id="fechaSalida"></td>
         <tr>
         <tr>
-            <td><input type="button" id="btnRegresar" value="Regresar" onclick="regresar_tarima();"></td>
+            <td><input type="button" id="btnRegresar" value="Regresar" onclick="regresarTarima();"></td>
             <td><input type="button" id="btnCancelar" value="Cancelar" onclick="cancelar();"></td>
         <tr>
     </table>
+    <div id="mensaje" style="display:none">
+
+    </div>
 </div>
 <script>
+    $(document).ready(function () {
+        $("#inpTarima").focus();
+        $("#inpTarima").numeric(
+				{
+				    negative: false,
+                    decimal:false
+				});
+    });
+
     function informacion(e) {
         e.preventDefault();
 
@@ -43,16 +55,48 @@
         
         $.get(pUrl, pData, function (Result) {
             if (Result.codigo === "") {
+                var fecha = new Date(Result.tarima.Fecha);
+                fecha.setDate(fecha.getDate() + 1);
+                var fecha2 = new Date(Result.tarima.FechaHoraSistema);
+                fecha2.setDate(fecha.getDate() + 1);
                 $("#folio").text(Result.tarima.Folio);
-                $("#fecha").text(Result.tarima.Fecha);
+                $("#fecha").text($.datepicker.formatDate('dd/mm/yy', fecha));
                 $("#cajas").text(Result.tarima.Cajas);
-                $("#kilos").text(Result.tarima.Kilos);
-                $("#fechaSalida").text(Result.tarima.FechaHoraSistema);
+                $("#kilos").text(Number(Result.tarima.Kilos).toFixed(2));
+                $("#fechaSalida").text($.datepicker.formatDate('dd/mm/yy', fecha2));
                 $("#DatosTarima").show();
+                $("#mensaje").hide();
+                $("#inpTarima").prop('readOnly', true);
+                $("#btnInformacion").prop('disabled', true);
             } else {
-                document.getElementById("divPrincipal").innerHTML = Result.codigo;
+                document.getElementById("mensaje").innerHTML = "";
+                document.getElementById("mensaje").innerHTML = Result.codigo;
+                $("#DatosTarima").hide();
+                $("#mensaje").show();
+                $("#inpTarima").prop('readOnly', true);
+                $("#btnInformacion").prop('disabled', true);
             }
         });
+    }
+    
+    function regresarTarima() {
+        if (window.confirm("¿Regresar tarima?")) {
+            var pUrl = "/tarimas/regresartarima";
+            var pData = $("#formaRegresarTarimas").serialize();
 
+            $.post(pUrl, pData, function (Result) {
+                window.alert(Result.mensaje);
+                cancelar();
+            });
+        }
+    }
+
+    function cancelar() {
+        $("#DatosTarima").hide();
+        $("#mensaje").hide();
+        $("#inpTarima").val("");
+        $("#inpTarima").prop('readOnly', false);
+        $("#btnInformacion").prop('disabled', false);
+        $("#inpTarima").focus();
     }
 </script>

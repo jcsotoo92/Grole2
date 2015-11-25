@@ -58,5 +58,10 @@ namespace grole.src.Logica
         {
             return _TarimasPersistencia.ObtenerDatosSalidaTarima(AFolio);
         }
+
+        public int RegresarTarima(int AFolioTarima, string AMotivo, string AUsuario)
+        {
+            return _TarimasPersistencia.RegresarTarima(AFolioTarima, AMotivo, AUsuario);
+        }
     }
 }
