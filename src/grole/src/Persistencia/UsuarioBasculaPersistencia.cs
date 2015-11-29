@@ -19,11 +19,11 @@ namespace grole.src.Persistencia
 		private UsuarioBascula ReaderToEntidad(FbDataReader AReader)
 		{
 			UsuarioBascula pResult = new UsuarioBascula();
-			pResult.CLAVE = AReader.GetInt32(0);
-			pResult.NOMBRE = AReader.GetString(1);
-			pResult.CONTRASENA = AReader.GetString(2);
-			pResult.TITULAR = AReader.GetString(3);
-			pResult.LOTES = AReader.GetString(4);
+			pResult.CLAVE          = AReader.GetInt32(0);
+			pResult.NOMBRE         = AReader.GetString(1);
+			pResult.CONTRASENA     = AReader.GetString(2);
+			pResult.TITULAR        = AReader.GetString(3);
+			pResult.LOTES          = AReader.GetString(4);
 			return pResult;
 		}
 		
@@ -46,11 +46,11 @@ namespace grole.src.Persistencia
 				while (reader.Read())
 				{
 					UsuarioBascula pUsuarioBascula = new UsuarioBascula();
-					pUsuarioBascula.CLAVE = reader.GetInt32(0);/*(string)reader["CLAVE"]*/;
-					pUsuarioBascula.NOMBRE = reader.GetString(1);/*(string)reader["NOMBRE"];*/
-					pUsuarioBascula.CONTRASENA = reader.GetString(2);/*(string)reader["CONTRASENA"];*/
-					pUsuarioBascula.TITULAR = reader.GetString(3);/*(string)reader["TITULAR"];*/
-					pUsuarioBascula.LOTES = reader.GetString(4);/*(string)reader["LOTES"];*/
+					pUsuarioBascula.CLAVE          = reader.GetInt32(0);/*(string)reader["CLAVE"]*/;
+					pUsuarioBascula.NOMBRE         = reader.GetString(1);/*(string)reader["NOMBRE"];*/
+					pUsuarioBascula.CONTRASENA     = reader.GetString(2);/*(string)reader["CONTRASENA"];*/
+					pUsuarioBascula.TITULAR        = reader.GetString(3);/*(string)reader["TITULAR"];*/
+					pUsuarioBascula.LOTES          = reader.GetString(4);/*(string)reader["LOTES"];*/
 					pResult.Add(pUsuarioBascula);
 				}
 			}

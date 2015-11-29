@@ -110,38 +110,38 @@ namespace grole.src.Persistencia
             FbConnection con = _Conexiones.ObtenerConexion();
 
             FbCommand com = new FbCommand(pSentencia, con);
-            com.Parameters.Add("@CLAVE", FbDbType.VarChar).Value = AProducto.Clave;
-            com.Parameters.Add("@DESCRIPCION", FbDbType.VarChar).Value = AProducto.Descripcion;
-            com.Parameters.Add("@CODIGOSAP", FbDbType.VarChar).Value = AProducto.CodigoSap;
-            com.Parameters.Add("@CODIGOPROVEDOR", FbDbType.VarChar).Value = AProducto.CodigoProveedor;
-            com.Parameters.Add("@MERCADO", FbDbType.VarChar).Value = AProducto.Mercado;
-            com.Parameters.Add("@CLASE", FbDbType.VarChar).Value = AProducto.Clase;
-            com.Parameters.Add("@LINEA", FbDbType.VarChar).Value = AProducto.Linea;
-            com.Parameters.Add("@GRUPO", FbDbType.SmallInt).Value = AProducto.Grupo;
-            com.Parameters.Add("@OPERADOR", FbDbType.SmallInt).Value = AProducto.Operador;
-            com.Parameters.Add("@RENDIMIENTO", FbDbType.Float).Value = AProducto.Rendimiento;
-            com.Parameters.Add("@MOLDEADO", FbDbType.VarChar).Value = AProducto.Moldeado;
-            com.Parameters.Add("@INVENTARIABLE", FbDbType.VarChar).Value = AProducto.Inventariable;
-            com.Parameters.Add("@CAPTURA_PEDIMENTO", FbDbType.VarChar).Value = AProducto.Captura_Pedimento;
-            com.Parameters.Add("@CATEGORIA", FbDbType.Integer).Value = AProducto.Categoria;
-            com.Parameters.Add("@PESOFIJO", FbDbType.Float).Value = AProducto.Pesofijo;
-            com.Parameters.Add("@PESOMINIMO", FbDbType.Float).Value = AProducto.Pesominimo;
-            com.Parameters.Add("@PESOMAXIMO", FbDbType.Float).Value = AProducto.Pesomaximo;
-            com.Parameters.Add("@PESOTARA", FbDbType.Float).Value = AProducto.Pesotara;
-            com.Parameters.Add("@DECIMALES", FbDbType.SmallInt).Value = AProducto.Decimales;
-            com.Parameters.Add("@FORMATO_ETIQUETA", FbDbType.Integer).Value = AProducto.Formato_Etiqueta;
-            com.Parameters.Add("@TEMPERATURA", FbDbType.VarChar).Value = AProducto.Temperatura;
-            com.Parameters.Add("@CLAVE_ALM", FbDbType.VarChar).Value = AProducto.Clave_Alm;
-            com.Parameters.Add("@KILOS_POR_CAJA", FbDbType.Numeric).Value = AProducto.Kilos_Por_Caja;
+            com.Parameters.Add("@CLAVE", FbDbType.VarChar).Value                  = AProducto.Clave;
+            com.Parameters.Add("@DESCRIPCION", FbDbType.VarChar).Value            = AProducto.Descripcion;
+            com.Parameters.Add("@CODIGOSAP", FbDbType.VarChar).Value              = AProducto.CodigoSap;
+            com.Parameters.Add("@CODIGOPROVEDOR", FbDbType.VarChar).Value         = AProducto.CodigoProveedor;
+            com.Parameters.Add("@MERCADO", FbDbType.VarChar).Value                = AProducto.Mercado;
+            com.Parameters.Add("@CLASE", FbDbType.VarChar).Value                  = AProducto.Clase;
+            com.Parameters.Add("@LINEA", FbDbType.VarChar).Value                  = AProducto.Linea;
+            com.Parameters.Add("@GRUPO", FbDbType.SmallInt).Value                 = AProducto.Grupo;
+            com.Parameters.Add("@OPERADOR", FbDbType.SmallInt).Value              = AProducto.Operador;
+            com.Parameters.Add("@RENDIMIENTO", FbDbType.Float).Value              = AProducto.Rendimiento;
+            com.Parameters.Add("@MOLDEADO", FbDbType.VarChar).Value               = AProducto.Moldeado;
+            com.Parameters.Add("@INVENTARIABLE", FbDbType.VarChar).Value          = AProducto.Inventariable;
+            com.Parameters.Add("@CAPTURA_PEDIMENTO", FbDbType.VarChar).Value      = AProducto.Captura_Pedimento;
+            com.Parameters.Add("@CATEGORIA", FbDbType.Integer).Value              = AProducto.Categoria;
+            com.Parameters.Add("@PESOFIJO", FbDbType.Float).Value                 = AProducto.Pesofijo;
+            com.Parameters.Add("@PESOMINIMO", FbDbType.Float).Value               = AProducto.Pesominimo;
+            com.Parameters.Add("@PESOMAXIMO", FbDbType.Float).Value               = AProducto.Pesomaximo;
+            com.Parameters.Add("@PESOTARA", FbDbType.Float).Value                 = AProducto.Pesotara;
+            com.Parameters.Add("@DECIMALES", FbDbType.SmallInt).Value             = AProducto.Decimales;
+            com.Parameters.Add("@FORMATO_ETIQUETA", FbDbType.Integer).Value       = AProducto.Formato_Etiqueta;
+            com.Parameters.Add("@TEMPERATURA", FbDbType.VarChar).Value            = AProducto.Temperatura;
+            com.Parameters.Add("@CLAVE_ALM", FbDbType.VarChar).Value              = AProducto.Clave_Alm;
+            com.Parameters.Add("@KILOS_POR_CAJA", FbDbType.Numeric).Value         = AProducto.Kilos_Por_Caja;
             com.Parameters.Add("@TIPO_FECHA_PRODUCCION", FbDbType.SmallInt).Value = AProducto.Tipo_Fecha_Produccion;
-            com.Parameters.Add("@FECHA_PRODUCCION", FbDbType.TimeStamp).Value = AProducto.Fecha_Produccion;
+            com.Parameters.Add("@FECHA_PRODUCCION", FbDbType.TimeStamp).Value     = AProducto.Fecha_Produccion;
             com.Parameters.Add("@TIPO_FECHA_SACRIFICIO", FbDbType.SmallInt).Value = AProducto.Tipo_Fecha_Sacrificio;
             //com.Parameters.Add("@FECHA_SACRIFICIO", FbDbType.TimeStamp).Value     = AProducto.Fecha_Sacrificio;
-            com.Parameters.Add("@TIPO_FECHA_CADUCIDAD", FbDbType.SmallInt).Value = AProducto.Tipo_Fecha_Caducidad;
-            com.Parameters.Add("@DIASCAD", FbDbType.Float).Value = AProducto.Diascad;
-            com.Parameters.Add("@CALCULA_DIAS_CAD", FbDbType.VarChar).Value = AProducto.Calcula_Dias_Cad;
-            com.Parameters.Add("@COPIAS", FbDbType.SmallInt).Value = AProducto.Copias;
-            com.Parameters.Add("@OTROS", FbDbType.Integer).Value = AProducto.Otros;
+            com.Parameters.Add("@TIPO_FECHA_CADUCIDAD", FbDbType.SmallInt).Value  = AProducto.Tipo_Fecha_Caducidad;
+            com.Parameters.Add("@DIASCAD", FbDbType.Float).Value                  = AProducto.Diascad;
+            com.Parameters.Add("@CALCULA_DIAS_CAD", FbDbType.VarChar).Value       = AProducto.Calcula_Dias_Cad;
+            com.Parameters.Add("@COPIAS", FbDbType.SmallInt).Value                = AProducto.Copias;
+            com.Parameters.Add("@OTROS", FbDbType.Integer).Value                  = AProducto.Otros;
 
             try
             {
@@ -519,11 +519,11 @@ namespace grole.src.Persistencia
                 FbDataReader reader = com.ExecuteReader();
                 while (reader.Read())
                 {
-                    pUsoEmpaque = new UsoEmpaque();
-                    pUsoEmpaque.Rempaque = reader["REMPAQUE"] != DBNull.Value ? (int)reader["REMPAQUE"] : -1;
-                    pUsoEmpaque.Nombre = (reader["NOMBRE"] != DBNull.Value) ? (string)reader["NOMBRE"] : "";
+                    pUsoEmpaque                   = new UsoEmpaque();
+                    pUsoEmpaque.Rempaque          = reader["REMPAQUE"] != DBNull.Value ? (int)reader["REMPAQUE"] : -1;
+                    pUsoEmpaque.Nombre            = (reader["NOMBRE"] != DBNull.Value) ? (string)reader["NOMBRE"] : "";
                     pUsoEmpaque.Cantidad_Producto = (reader["CANTIDAD_PRODUCTO"] != DBNull.Value) ? (decimal)reader["CANTIDAD_PRODUCTO"] : 0;
-                    pUsoEmpaque.Cantidad_Empaque = (reader["CANTIDAD_EMPAQUE"] != DBNull.Value) ? (decimal)reader["CANTIDAD_EMPAQUE"] : 0;
+                    pUsoEmpaque.Cantidad_Empaque  = (reader["CANTIDAD_EMPAQUE"] != DBNull.Value) ? (decimal)reader["CANTIDAD_EMPAQUE"] : 0;
                     pResult.Add(pUsoEmpaque);
                 }
             }
@@ -560,12 +560,12 @@ namespace grole.src.Persistencia
                 FbDataReader reader = com.ExecuteReader();
                 while (reader.Read())
                 {
-                    pUsoEmpaque = new DetalleUsoEmpaque();
-                    pUsoEmpaque.RProducto = reader["RPRODUCTO"] != DBNull.Value ? (string)reader["RPRODUCTO"] : "";
-                    pUsoEmpaque.Descripcion = (reader["DESCRIPCION"] != DBNull.Value) ? (string)reader["DESCRIPCION"] : "";
-                    pUsoEmpaque.Rempaque = reader["REMPAQUE"] != DBNull.Value ? (int)reader["REMPAQUE"] : -1;
-                    pUsoEmpaque.Nombre = (reader["NOMBRE"] != DBNull.Value) ? (string)reader["NOMBRE"] : "";
-                    pUsoEmpaque.RCantidad = (reader["RCANTIDAD"] != DBNull.Value) ? (decimal)reader["RCANTIDAD"] : 0;
+                    pUsoEmpaque                  = new DetalleUsoEmpaque();
+                    pUsoEmpaque.RProducto        = reader["RPRODUCTO"] != DBNull.Value ? (string)reader["RPRODUCTO"] : "";
+                    pUsoEmpaque.Descripcion      = (reader["DESCRIPCION"] != DBNull.Value) ? (string)reader["DESCRIPCION"] : "";
+                    pUsoEmpaque.Rempaque         = reader["REMPAQUE"] != DBNull.Value ? (int)reader["REMPAQUE"] : -1;
+                    pUsoEmpaque.Nombre           = (reader["NOMBRE"] != DBNull.Value) ? (string)reader["NOMBRE"] : "";
+                    pUsoEmpaque.RCantidad        = (reader["RCANTIDAD"] != DBNull.Value) ? (decimal)reader["RCANTIDAD"] : 0;
                     pUsoEmpaque.RCantidadEmpaque = (reader["RCANTIDADEMPAQUE"] != DBNull.Value) ? (decimal)reader["RCANTIDADEMPAQUE"] : 0;
                     pResult.Add(pUsoEmpaque);
                 }
@@ -626,8 +626,8 @@ namespace grole.src.Persistencia
                 FbDataReader reader = com.ExecuteReader();
                 while (reader.Read())
                 {
-                    pResult = new Producto();
-                    pResult.Clave = reader["CLAVE"] != DBNull.Value ? (string)reader["CLAVE"] : "";
+                    pResult             = new Producto();
+                    pResult.Clave       = reader["CLAVE"] != DBNull.Value ? (string)reader["CLAVE"] : "";
                     pResult.Descripcion = reader["DESCRIPCION"] != DBNull.Value ? (string)reader["DESCRIPCION"] : "";
                     listaProductos.Add(pResult);
                 }
@@ -651,7 +651,7 @@ namespace grole.src.Persistencia
 
             FbCommand com = new FbCommand(pSentencia, con);
             com.Parameters.Add("@PESOTARA", FbDbType.Float).Value = ATara;
-            com.Parameters.Add("@CLAVE", FbDbType.VarChar).Value = AProducto.Clave;
+            com.Parameters.Add("@CLAVE", FbDbType.VarChar).Value  = AProducto.Clave;
 
             try
             {

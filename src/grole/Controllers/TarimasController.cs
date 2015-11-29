@@ -66,32 +66,58 @@ namespace grole.Controllers
         }
 
         [HttpGet]
-        public JsonResult InformacionGeneral(int Folio)
+        public JsonResult InformacionGeneral(int FolioTarima)
         {
-            Tarima pTarima = _TarimasLogica.ObtenerTarima(Folio);
-            List<Salida> pDatosSalidas = _TarimasLogica.ObtenerDatosSalidaTarima(Folio);
+            Tarima pTarima = _TarimasLogica.ObtenerTarima(FolioTarima);
+            List<Salida> pDatosSalidas = _TarimasLogica.ObtenerDatosSalidaTarima(FolioTarima);
 
             if (pTarima == null)
             {
-                return Json(new {codigo = "<p>La tarima con el folio <strong>" + Folio + "</strong> no se encontró<p/> " +
+                return Json(new {codigo = "<p>La tarima con el folio <strong>" + FolioTarima + "</strong> no se encontró<p/> " +
                         "<br/> " +
                         "<input type = \"button\" id = \"btnCancelar\" value = \"Cancelar\" onclick = \"cancelar();\"> ", tarima = pTarima });
             }
 
             if (pTarima.Estatus != "S")
             {
-                return Json(new {codigo = "<p>No se puede regresar tarimas cuya fecha de salida sea mayor o igual al <strong>3 de Marzo 2012</strong> la fecha de la tarima con el folio <strong>" + Folio + "</strong>" +
-                        "es <strong>" + pTarima.Fecha.ToShortDateString() + "</strong><p/> " +
+                return Json(new
+                {
+                    codigo = "<p>La tarima con el folio <strong>" + FolioTarima + "</strong> no está embarcada<p/>" +
                       "<br/> " +
-                      "<input type = \"button\" id = \"btnCancelar\" value = \"Cancelar\" onclick = \"cancelar()\"> ", tarima = pTarima });
+                      "<input type = \"button\" id = \"btnCancelar\" value = \"Cancelar\" onclick = \"cancelar()\"> ",
+                    tarima = pTarima
+                });
             }
 
+            if(pTarima.Fecha < new DateTime(2012, 03, 03))
+            {
+                return Json(new
+                {
+                    codigo = "<p>No se puede regresar tarimas cuya fecha de salida sea mayor o igual al <strong>3 de Marzo 2012</strong> la fecha de la tarima con el folio <strong>" + FolioTarima + "</strong>" +
+                        "es <strong>" + pTarima.Fecha.ToShortDateString() + "</strong><p/> " +
+                      "<br/> " +
+                      "<input type = \"button\" id = \"btnCancelar\" value = \"Cancelar\" onclick = \"cancelar()\"> ",
+                    tarima = pTarima
+                });
+            }
             if (pDatosSalidas.Count == 0)
             {
                 return Json(new { codigo = "<p>La tarima no tiene datos de salida</p><br/><input type=\"button\" id=\"btnCancelar\" value=\"Cancelar\" onclick=\"cancelar(); \">", tarima = pTarima });
             }
             
             return Json(new { codigo = "", tarima = pTarima });
+        }
+        [HttpPost]
+        public JsonResult RegresarTarima(int FolioTarima, string Motivo)
+        {
+            if(_TarimasLogica.RegresarTarima(FolioTarima, Motivo, HttpContext.User.Identity.Name) > 0)
+            {
+                return Json(new { mensaje = "Se regresó la tarima con éxito" });
+            }
+            else
+            {
+                return Json(new { mensaje = "Hubo algún problema, reportelo al dpto. de sistemas"});
+            }
         }
     }
 }
