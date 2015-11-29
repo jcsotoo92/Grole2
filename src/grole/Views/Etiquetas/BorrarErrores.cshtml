@@ -1,0 +1,132 @@
+﻿<h2>Borrar Errores</h2>
+<div>
+    <form action="/CortarCanales/CortarCanal" method="get">
+
+        <table>
+            <tr>
+                <td>Folio</td>
+                <td><input type="text" name="Folio" id="Folio" /></td>
+            </tr>
+            <tr>
+                <td>Fecha</td>
+                <td><input type="text" name="Fecha" id="Fecha" /></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="button" name="btnInfo" value="Información" onclick="get_info_etiqueta();" /></td>
+            </tr>
+        </table>
+
+        <br />
+
+        <div id="info" name="info">
+            <table>
+                <tr>
+                    <td>Producto</td>
+                    <td><label value="Producto" name="producto" id="producto" /></td>
+                </tr>
+                <tr>
+                    <td>Código</td>
+                    <td><label value="Código" name="codigo" id="codigo" /></td>
+                </tr>
+                <tr>
+                    <td>Motivo</td>
+                    <td><input type="text" name="motivo" id="motivo" /></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="button" size="100" name="edtSubmit" value="Eliminar" onclick="borrar_error();" /></td>
+                </tr>
+            </table>
+        </div>
+
+    </form>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $.datepicker.setDefaults($.datepicker.regional['es']);
+            $("#Fecha").datepicker({ changeMonth: true, changeYear: true });
+			$("#info").hide();
+			$("#Folio").focus();
+        });
+
+        function get_info_etiqueta() {
+
+                var pFolio     = document.getElementById("Folio").value;
+                var pFecha     = document.getElementById("Fecha").value;
+
+				pUrl = "/info_caja?folio=" + pFolio.toString() + "&fecha=" + pFecha.toString();
+
+                $.ajax({
+                    url: pUrl,
+                    type: 'GET',
+                    success: function (data) {
+                        if (data.producto != "-1") {
+                            document.getElementById("producto").innerText = data.producto;
+							document.getElementById("codigo").innerText   = data.codigobarras;
+							$("#info").show();
+							$("#motivo").focus();
+                        }
+                        else {
+                            $("#Folio").focus();
+							alert("No existe etiqueta");
+                        }
+                    },
+                    error: function (xhr, errorType, exception) {
+                        var errorMessage = exception ? exception : xhr.statusText;
+
+                        alert(errorMessage);
+                    }
+                });
+            }
+
+			function borrar_error() {
+
+				var pMotivo = document.getElementById("motivo").value.toString();
+				var pFolio  = document.getElementById("Folio").value;
+                var pFecha  = document.getElementById("Fecha").value;
+
+				if (pMotivo.length == 0)
+				{
+					alert("Capture motivo");
+					$("#motivo").focus();
+					exit;
+				}
+
+				if (confirm("¿Borrar etiqueta?")) {
+
+					var pCodigo = document.getElementById("codigo").innerText;
+
+					pUrl = "/borrar_error?folio=" + pFolio + "&fecha=" + pFecha +"&motivo=" + pMotivo;
+
+					$.ajax({
+						url: pUrl,
+						type: 'POST',
+						success: function (data) {
+							alert(data.mensaje);
+							if (data.codigo == 1)
+							{
+								$("#info").hide();
+								$("#Folio").focus();
+								document.getElementById("motivo").value    = "";
+							}
+							else
+							{
+								$("#info").hide();
+								$("#Folio").focus();
+								$("#Folio").select();
+							}
+						},
+						error: function (xhr, errorType, exception) {
+							var errorMessage = exception ? exception : xhr.statusText;
+							alert(errorMessage);
+						}
+					});
+				}
+
+            }
+
+    </script>
+
+</div>

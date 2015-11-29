@@ -775,5 +775,53 @@ namespace grole.src.Persistencia
 
             return DetalleCajasPendientesRecepcionEmbarques;
         }
+
+        public List<Corte> ObtenerDatosCaja(int AFolio, string AFecha)
+        {
+            List<Corte> pCajas = new List<Corte>();
+            Corte pResult = null;
+            string pSentencia = "SELECT FECHA, PESO, BASCULA, TARIMA, ID_SALIDA, PRODUCTO, CODIGOBARRAS, EMBARCADO, ENTRADA_APLICADA, FECHA_SACRIFICIO FROM DRASCORT WHERE FOLIO = @FOLIO AND FECHA = @FEHCA";
+            FbConnection con = _Conexion.ObtenerConexion();
+
+            FbCommand com = new FbCommand(pSentencia, con);
+            com.Parameters.Add("@FOLIO", FbDbType.Integer).Value = AFolio;
+            com.Parameters.Add("@FECHA", FbDbType.TimeStamp).Value = AFecha;
+            try
+            {
+
+                con.Open();
+                FbDataReader reader = com.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    pResult = new Corte();
+                    if (reader["FECHA"] != DBNull.Value)
+                        pResult.Fecha = (DateTime)reader["FECHA"];
+                    pResult.Peso = reader["PESO"] != DBNull.Value ? (decimal)reader["PESO"] : -1;
+                    pResult.Bascula = reader["BASCULA"] != DBNull.Value ? (int)reader["BASCULA"] : -1;
+                    pResult.Tarima = reader["TARIMA"] != DBNull.Value ? (int)reader["TARIMA"] : -1;
+                    pResult.Id_Salida = (reader["ID_SALIDA"] != DBNull.Value) ? (int)reader["ID_SALIDA"] : -1;
+                    pResult.Producto = reader["PRODUCTO"] != DBNull.Value ? (string)reader["PRODUCTO"] : "";
+                    pResult.CodigoBarras = (reader["CODIGOBARRAS"] != DBNull.Value) ? (string)reader["CODIGOBARRAS"] : "";
+                    pResult.Embarcado = (reader["EMBARCADO"] != DBNull.Value) ? (string)reader["EMBARCADO"] : "";
+                    pResult.Entrada_Aplicada = (reader["ENTRADA_APLICADA"] != DBNull.Value) ? (string)reader["ENTRADA_APLICADA"] : "";
+                    if (reader["FECHA_SACRIFICIO"] != DBNull.Value)
+                        pResult.Fecha = (DateTime)reader["FECHA_SACRIFICIO"];
+
+                    pCajas.Add(pResult);
+                }
+            }
+            finally
+            {
+                if (con.State == System.Data.ConnectionState.Open)
+                {
+                    con.Close();
+                }
+            }
+
+            return pCajas;
+        }
+
+
     }
 }

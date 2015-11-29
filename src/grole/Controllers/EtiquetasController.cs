@@ -76,5 +76,15 @@ namespace grole.Controllers
         {
             return Json(_EliminadasLogica.ObtenerAuxiliarEliminadas(Producto, FechaIni, FechaFin));
         }
+
+        public ActionResult BorrarErrores()
+        {
+            return View();
+        }
+
+        public JsonResult InfoCaja()
+        {
+            return Json("");
+        }
     }
 }
