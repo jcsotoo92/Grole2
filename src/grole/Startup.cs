@@ -27,7 +27,9 @@ namespace grole.src
             });
             Services.AddAuthentication();
             Services.AddInstance<IConfiguration>(Configuration);
-
+            //ValoresRescate
+            Services.AddTransient<grole.src.Persistencia.Valores_RescatePersistencia>();
+            Services.AddTransient<grole.src.Logica.Valores_RescateLogica>();
             //Canales
             Services.AddTransient<grole.src.Persistencia.CanalesPersistencia>();
             Services.AddTransient<grole.src.Logica.CanalesLogica>();

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 using grole.src.Logica;
 using grole.src.Entidades;
+using Microsoft.AspNet.Http;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -82,9 +83,31 @@ namespace grole.Controllers
             return View();
         }
 
-        public JsonResult InfoCaja()
+        public JsonResult InfoCaja(int AFolio, string AFecha)
         {
-            return Json("");
+            
+            Corte caja = _CajasLogica.ObtenerDatosCaja(AFolio, AFecha);
+            if (caja == null)
+            {
+                caja.Producto = "" + -1; caja.CodigoBarras = "" + -1;
+            }
+            else {
+               caja.Producto = caja.Producto + " " + _ProductosLogica.DameDescripcionProducto(caja.Producto);
+            }
+            Console.WriteLine(caja.Producto + " " + caja.CodigoBarras);
+
+            return Json(caja);
         }
+        public JsonResult BorrarError(int AFolio, string AFecha, string AMotivo)
+        {
+            string pMensaje="";
+            Corte info_caja = _CajasLogica.ObtenerDatosCaja(AFolio, AFecha);
+            int id_usuario = (int)HttpContext.Session.GetInt32("IdUsuario");
+
+            _CajasLogica.BorrarEtiqueta(info_caja.CodigoBarras, AMotivo, "", id_usuario, out pMensaje);
+            return Json(new { Mensaje1="Caja borrada con éxito", Mensaje2 = pMensaje });
+        }
+
+        
     }
 }

@@ -168,5 +168,49 @@ namespace grole.src.Persistencia
             }
             return pResult;
         }
+
+        public Boolean inserta_eliminada(Corte ACaja, string AMotivo, string ACodigoAlta, int AUsuario)
+        {
+            string pSentencia = "INSERT INTO DRASELIM(FECHA, FOLIO, GRANJA, LOTE, PRODUCTO, BASCULA, PESO, TARA, PESONETO, EMBARCADO, CODIGOBARRAS, TARIMA, ALMACENADO, ESTATUS, MOTIVO, CODIGOALTA, USUARIO, FECHACANCELACION, ENTRADA_APLICADA, ID_ACUM) " +
+                               "VALUES(@FECHA, @FOLIO, @GRANJA, @LOTE, @PRODUCTO, @BASCULA, @PESO, @TARA, @PESONETO, @EMBARCADO, @CODIGOBARRAS, @TARIMA, @ALMACENADO, @ESTATUS, @MOTIVO, @CODIGOALTA, @USUARIO, @FECHACANCELACION, @ENTRADA_APLICADA, @ID_ACUM)";
+            FbConnection con = _Conexion.ObtenerConexion();
+
+            FbCommand com = new FbCommand(pSentencia, con);
+            com.Parameters.Add("@FECHA", FbDbType.TimeStamp).Value = ACaja.Fecha;
+            com.Parameters.Add("@FOLIO", FbDbType.Integer).Value = ACaja.Folio;
+            com.Parameters.Add("@GRANJA", FbDbType.Integer).Value = ACaja.Granja;
+            com.Parameters.Add("@LOTE", FbDbType.Integer).Value = ACaja.Lote;
+            com.Parameters.Add("@PRODUCTO", FbDbType.VarChar).Value = ACaja.Producto;
+            com.Parameters.Add("@BASCULA", FbDbType.Integer).Value = ACaja.Bascula;
+            com.Parameters.Add("@PESO", FbDbType.Numeric).Value = ACaja.Peso;
+            com.Parameters.Add("@TARA", FbDbType.Numeric).Value = ACaja.Tara;
+            com.Parameters.Add("@PESONETO", FbDbType.Numeric).Value = ACaja.PesoNeto;
+            com.Parameters.Add("@EMBARCADO", FbDbType.VarChar).Value = ACaja.Embarcado;
+            com.Parameters.Add("@CODIGOBARRAS", FbDbType.VarChar).Value = ACaja.CodigoBarras;
+            com.Parameters.Add("@TARIMA", FbDbType.Integer).Value = ACaja.Tarima;
+            com.Parameters.Add("@ALMACENADO", FbDbType.VarChar).Value = ACaja.Almacenado;
+            com.Parameters.Add("@ESTATUS", FbDbType.VarChar).Value = ACaja.Estatus;
+            com.Parameters.Add("@MOTIVO", FbDbType.VarChar).Value = AMotivo;
+            com.Parameters.Add("@CODIGOALTA", FbDbType.VarChar).Value = ACodigoAlta;
+            com.Parameters.Add("@USUARIO", FbDbType.VarChar).Value = AUsuario;
+            com.Parameters.Add("@FECHACANCELACION", FbDbType.TimeStamp).Value = ACaja.Fecha; //INGRESAR FECHA CANCELACION
+            com.Parameters.Add("@ENTRADA_APLICADA", FbDbType.VarChar).Value = ACaja.Entrada_Aplicada;
+            com.Parameters.Add("@ID_ACUM", FbDbType.Integer).Value = ACaja.Id_Acum;
+            try
+            {
+                con.Open();
+                com.ExecuteNonQuery();
+            }
+            finally
+            {
+                if (con.State == System.Data.ConnectionState.Open)
+                {
+                    con.Close();
+                }
+            }
+
+            return true;
+
+        }
     }
 }

@@ -115,6 +115,27 @@ namespace grole.Controllers
         {
             return View(_CajasLogica.ObtenerDetalleCajasPendientesRecepcionEmbarques(Fecha, Producto));
         }
+        public ActionResult RegresarCajas()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public JsonResult TablaInfoCaja(string ACodigo)
+        {
+            return Json(_CajasLogica.ObtenerCaja(ACodigo));
+        }
+
+        public JsonResult RegresarCaja(string ACodigo)
+        {
+            int id_usuario = (int)HttpContext.Session.GetInt32("IdUsuario");
+            string IP = HttpContext.Connection.RemoteIpAddress.ToString();
+            bool rest = _CajasLogica.RegresaCaja(IP, id_usuario, ACodigo);
+            if(rest)
+                return Json("La caja se regreso exitosamente");
+            else
+                return Json("La caja no tiene salida");
+        }
 
         
     }

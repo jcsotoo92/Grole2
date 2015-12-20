@@ -1,5 +1,4 @@
 ﻿<h2>Borrar Errores</h2>
-<div>
     <form action="/CortarCanales/CortarCanal" method="get">
 
         <table>
@@ -22,11 +21,11 @@
         <div id="info" name="info">
             <table>
                 <tr>
-                    <td>Producto</td>
+                    <td>Producto: </td>
                     <td><label value="Producto" name="producto" id="producto" /></td>
                 </tr>
                 <tr>
-                    <td>Código</td>
+                    <td>Código: </td>
                     <td><label value="Código" name="codigo" id="codigo" /></td>
                 </tr>
                 <tr>
@@ -56,29 +55,23 @@
                 var pFolio     = document.getElementById("Folio").value;
                 var pFecha     = document.getElementById("Fecha").value;
 
-				pUrl = "/info_caja?folio=" + pFolio.toString() + "&fecha=" + pFecha.toString();
+                pUrl = "/Etiquetas/InfoCaja";
+                pData = "AFolio=" + pFolio.toString() + "&AFecha=" + pFecha.toString();
 
-                $.ajax({
-                    url: pUrl,
-                    type: 'GET',
-                    success: function (data) {
-                        if (data.producto != "-1") {
-                            document.getElementById("producto").innerText = data.producto;
-							document.getElementById("codigo").innerText   = data.codigobarras;
-							$("#info").show();
-							$("#motivo").focus();
-                        }
-                        else {
-                            $("#Folio").focus();
-							alert("No existe etiqueta");
-                        }
-                    },
-                    error: function (xhr, errorType, exception) {
-                        var errorMessage = exception ? exception : xhr.statusText;
+                $.get(pUrl, pData, function (data) {
 
-                        alert(errorMessage);
+                    if (data.producto != "-1") {
+                        document.getElementById("producto").innerText = data.Producto;
+                        document.getElementById("codigo").innerText = data.CodigoBarras;
+                        $("#info").show();
+                        $("#motivo").focus();
+                    }
+                    else {
+                        $("#Folio").focus();
+                        alert("No existe etiqueta");
                     }
                 });
+                   
             }
 
 			function borrar_error() {
@@ -98,35 +91,19 @@
 
 					var pCodigo = document.getElementById("codigo").innerText;
 
-					pUrl = "/borrar_error?folio=" + pFolio + "&fecha=" + pFecha +"&motivo=" + pMotivo;
-
-					$.ajax({
-						url: pUrl,
-						type: 'POST',
-						success: function (data) {
-							alert(data.mensaje);
-							if (data.codigo == 1)
-							{
+					pUrl = "/Etiquetas/BorrarError";
+                    pData = "AFolio=" + pFolio + "&AFecha=" + pFecha +"&AMotivo=" + pMotivo;
+                    $.get(pUrl, pData, function (data) {
+							alert(data.Mensaje1+":"+data.Mensaje2);
+							
 								$("#info").hide();
 								$("#Folio").focus();
 								document.getElementById("motivo").value    = "";
-							}
-							else
-							{
-								$("#info").hide();
-								$("#Folio").focus();
-								$("#Folio").select();
-							}
-						},
-						error: function (xhr, errorType, exception) {
-							var errorMessage = exception ? exception : xhr.statusText;
-							alert(errorMessage);
-						}
+							
+							
 					});
 				}
 
             }
 
     </script>
-
-</div>

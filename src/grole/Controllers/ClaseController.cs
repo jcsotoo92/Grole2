@@ -18,7 +18,7 @@ namespace grole.Controllers
 		//Retorna la vista de Clase
 		public ActionResult Index()
 		{
-			List<Clase> pListaClase = _ClasesLogica.ListaClases();
+            List<Clase> pListaClase = _ClasesLogica.ListaClases();
 			return View(pListaClase);
 		}
 		//Retorna La Lista de Clases

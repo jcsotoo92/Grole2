@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta name="mobile-web-app-capable" content="yes">
+    <link href="/public/styles/jquery.mobile-1.4.2.css" rel="stylesheet" type="text/css" />
+    <script src="/public/scripts/jquery-1.8.2.min.js"></script>
+    <script src="/public/scripts/jquery.mobile-1.4.2.js"></script>
+    <title>Control de Rastro Grole Mobile</title>
+    <script>
+
+		$( document ).on( "pageinit", "#firstPage", function() {
+
+			$( "#inpProducto" ).focus(function(){
+				$("#autocomplete").html( "" );
+
+				if (document.getElementById("inpProducto").value.trim().length == 0){
+
+					document.getElementById("claveProducto").value =  "0"
+
+				}
+			});
+
+			$( "#inpProducto" ).keydown(function(){
+
+				var $ul = $("#autocomplete"),
+					value = document.getElementById("inpProducto").value;
+					html = "";
+				$ul.html( "" );
+				if ( value && value.length >= 3 ) {
+					$ul.html( "<li><div class='ui-loader'><span class='ui-icon ui-icon-loading'></span></div></li>" );
+					$ul.listview( "refresh" );
+					$.ajax({
+						url: "/productos/obtener_productos_autocomplete",
+						dataType: "json",
+						crossDomain: true,
+						data: {
+							q: value
+						}
+					})
+					.then( function ( response ) {
+
+						$.each( response, function ( i, val ) {
+							html += "<li onclick='setInputText(\"" + val.descripcion + "\", \"" + val.clave  + "\")'>" + val.descripcion + " (" + val.clave + ")</li>";
+						});
+
+						$ul.html( html );
+						$ul.listview( "refresh" );
+						$ul.trigger( "updatelayout");
+					});
+				}
+				else{
+					document.getElementById("claveProducto").value =  "0";
+					html += "<li onclick='setInputText(\"Todos\", \"0\")'>Todos</li>";
+					$ul.html( html );
+					$ul.listview( "refresh" );
+					$ul.trigger( "updatelayout");
+				}
+			});
+		});
+
+		function setInputText(AText, AClave){
+			document.getElementById("inpProducto").value = AText;
+			document.getElementById("claveProducto").value = AClave;
+			$("#autocomplete").html( "" );
+		}
+
+    </script>
+</head>
+<body>
+    <section id="firstPage" data-role="page">
+
+
+        <header data-role="header">
+            <a href="/menu" rel="external" data-role="button">Menu</a>
+            <h1>Auditoría de Cajas</h1>
+        </header>
+        <div data-role="content">
+            <form action="/auditoria_cajas" method="POST">
+                <input type="hidden" id="claveProducto" name="claveProducto" value="0">
+                <fieldset>
+                    <leyend>Parámetros</leyend>
+                    <div data-role="fieldcontain">
+                        <label for="fechaInicial">Fecha Inicial:</label>
+                        <input type="date" id="fechaInicial" name="fechaInicial" value="<%=Time.now.strftime(" %Y-%m-%d")%>">
+                    </div>
+                    <div data-role="fieldcontain">
+                        <label for="fechaFinal">Fecha Final:</label>
+                        <input type="date" id="fechaFinal" name="fechaFinal" value="<%=Time.now.strftime(" %Y-%m-%d")%>">
+                    </div>
+                    <div data-role="fieldcontain">
+                        <label for="estado">Estado:</label>
+                        <select id="estado" name="estado">
+                            <option value="Todas">Todas</option>
+                            <option value="Normal">Normal</option>
+                            <option value="Pendientes">Pendientes</option>
+                            <option value="Justificadas">Justificadas</option>
+                            <option value="SinCodigoBarras">Sin Código de Barras</option>
+                        </select>
+                    </div>
+                    <div data-role="fieldcontain">
+                        <label for="inpProducto">Producto:</label>
+                        <input type="search" id="inpProducto" value="Todos">
+                    </div>
+                    <div data-role="fieldcontain">
+                        <label for="autocomplete"></label>
+                        <ul id="autocomplete" data-role="listview" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow"></ul>
+                    </div>
+                    <div>
+                        <input type="submit" value="Consultar" />
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </section>
+</body>
+</html>

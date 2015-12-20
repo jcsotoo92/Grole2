@@ -31,5 +31,10 @@ namespace grole.src.Logica
 
             return _EliminadasPersistencia.ObtenerAuxiliarEliminadas(listaProductos, AFechaIni, AFechaFin);
         }
+
+        public Boolean inserta_eliminada(Corte ACaja, string AMotivo, string ACodigoAlta, int AUsuario)
+        {
+           return _EliminadasPersistencia.inserta_eliminada(ACaja, AMotivo, ACodigoAlta, AUsuario);
+        }
     }
 }

@@ -1,0 +1,97 @@
+﻿<h2>Regresar Cajas</h2>
+<div>
+    <div>
+        Codigo Barras:
+    </div>
+    <div>
+        <input type="text" value="" id="inpCodigoBarras" autofocus>&nbsp;<button style="margin-top: -5px;" onclick="getInfo();">Información</button>
+    </div>
+</div>
+<div id="divInfo">
+    <style>
+        .t_row {
+            font-weight: bold;
+        }
+    </style>
+    <table id="CajaTable">
+        
+    </table>
+    <div id="divButton">
+        
+    </div>
+</div>
+
+<script type="text/javascript">
+
+	function getInfo(){
+
+		var pCodigo = "ACodigo="+document.getElementById("inpCodigoBarras").value;
+		$.get("/Cortes/tablaInfoCaja", pCodigo, function (data) {
+
+		    if (data != null)
+		        load_data(data);
+		    else
+		        load_alert(document.getElementById("inpCodigoBarras").value);
+
+		});
+
+	}
+	function load_alert(data)
+	{
+	    var pTabla = document.getElementById("CajaTable");
+	    while (pTabla.firstChild) {//Limpia la tabla evitando duplicidades
+	        pTabla.removeChild(pTabla.firstChild);
+	    }
+	    var pTabla = document.getElementById("divButton");
+	    while (pTabla.firstChild) {//Limpia la tabla evitando duplicidades
+	        pTabla.removeChild(pTabla.firstChild);
+	    }
+
+	    $("#CajaTable").append("<tr><td>El código " + data + " no existe</td></tr>");
+
+	}
+	function load_data(data)
+	{
+	    var pTabla = document.getElementById("CajaTable");
+	    while (pTabla.firstChild) {//Limpia la tabla evitando duplicidades
+	        pTabla.removeChild(pTabla.firstChild);
+	    }
+	    var pTabla = document.getElementById("divButton");
+	    while (pTabla.firstChild) {//Limpia la tabla evitando duplicidades
+	        pTabla.removeChild(pTabla.firstChild);
+	    }
+	    $("#CajaTable").append("<tr><td class='t_row'>Producto: </td><td>" + data.Producto + " </tr> <tr> <td class='t_row'>Fecha: </td><td>" + data.Fecha + " </tr><tr><td class='t_row'>Folio:</td><td>" + data.Folio + "</tr><tr><td class='t_row'>Peso:</td><td>" + data.Peso + "</tr><tr><td class='t_row'>Tarima:</td><td>" + data.Tarima + "</tr><tr><td class='t_row'>Embarcado:</td><td>" + data.Embarcado + "</tr><tr><td class='t_row'>Salida:</td><td>" + data.Id_Salida + "</tr>");
+	    $("#divButton").append("<button onclick='regresarCaja();'>Regresar</button>&nbsp;<button onclick='limpiaDatos();'>Cancelar</button>");
+	}
+
+	function regresarCaja(){
+
+		if (window.confirm("¿Regresar Caja?")){
+
+		    var pCodigo = "ACodigo=" + document.getElementById("inpCodigoBarras").value;
+			$.post("/Cortes/RegresarCaja", pCodigo, function (data) {
+
+				alert(data);
+				limpiaDatos();
+
+			});
+
+		}
+	}
+
+	function limpiaDatos(){
+		document.getElementById("inpCodigoBarras").value = "";
+		document.getElementById("inpCodigoBarras").focus();
+
+		var pTabla = document.getElementById("CajaTable");
+		while (pTabla.firstChild) {//Limpia la tabla evitando duplicidades
+		    pTabla.removeChild(pTabla.firstChild);
+		}
+		var pTabla = document.getElementById("divButton");
+		while (pTabla.firstChild) {//Limpia la tabla evitando duplicidades
+		    pTabla.removeChild(pTabla.firstChild);
+		}
+		
+	}
+
+</script>
